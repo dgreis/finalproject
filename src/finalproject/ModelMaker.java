@@ -4,6 +4,8 @@ import au.com.bytecode.opencsv.CSVReader;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 import java.util.Random;
 import java.util.Iterator;
 import java.util.Map;
@@ -63,6 +65,30 @@ public class ModelMaker {
 	 return null;
  }
  
+ public void serializeClassifier(NaiveBayesClassifier clf){
+	 try
+	 {
+	 FileOutputStream fileStream = new FileOutputStream("clf.ser");
+	 ObjectOutputStream os = new ObjectOutputStream(fileStream);
+	 print(clf.getClass());
+	 os.writeObject(clf);
+	 os.close();
+	 }
+	 catch (FileNotFoundException ex)
+	 	{
+			ex.printStackTrace();
+		}
+	 catch (IOException e) 
+	 	{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+ }
+ 
+ public String getPath(){
+	 String path = System.getProperty("user.dir");
+	 return path;
+ }
  
  public static void splitTestTrain(Dataset data){	
 	 Random r = new Random();
@@ -92,16 +118,21 @@ public class ModelMaker {
      print( sb.toString());
  }
 
+ 
 
 public static void main(String[] args){
 	//This is main basic workflow of this class. Implementation can be improved
-	String testfile =  "/Users/dgreis/Documents/workspace/finalproject/iris.data";
+	String testfile =  "dummydata/iris.data";
+	//String testfile =  "/Users/dgreis/Documents/workspace/finalproject/dummydata/iris.data";
 	ModelMaker m = new ModelMaker();
+	//String path = m.getPath();
 	Dataset dat = m.importData(testfile);
 	NaiveBayesClassifier nb = new NaiveBayesClassifier(true, true, false);
 	CrossValidation cv = new CrossValidation(nb);
 	m.prettyPrint((cv.crossValidation(dat)));
-				
+	//m.serializeClassifier(nb);
+	//System.out.println(path);
+	
 
 }
 
