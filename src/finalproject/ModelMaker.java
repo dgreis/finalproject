@@ -1,5 +1,4 @@
 package finalproject;
-import net.sf.javaml.classification.*;
 import au.com.bytecode.opencsv.CSVReader;
 
 import java.io.FileNotFoundException;
@@ -11,23 +10,25 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.HashMap;
 
-import net.sf.javaml.tools.data.*;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.Arrays;
 
-import net.sf.javaml.core.*;
-import net.sf.javaml.filter.normalize.NormalizeMidrange;
-import net.sf.javaml.classification.bayes.NaiveBayesClassifier;
 import net.sf.javaml.classification.evaluation.*;
+import weka.classifiers.Classifier;
+import weka.core.converters.ConverterUtils.DataSource;
+import weka.core.Instances;
+import weka.classifiers.bayes.NaiveBayes;
 
 
 public class ModelMaker {
+	//This class takes a csv as input and outputs a serialized trained model.
+	//Main method currently loads, trains, serializes, and deserializes model (for testing)
 
-	
-	public List<String[]> readfile(String path){
+	//CSV Reader Method (Unused 2/25/14)
+	public List<String[]> readCSV(String path){
 	 try{
 			CSVReader reader = new CSVReader(new FileReader(path));
 			List<String[]> myEntries = reader.readAll();
@@ -43,98 +44,87 @@ public class ModelMaker {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	return null;
-	 		 
- }
- 
- private static void print(Object p){
-	 System.out.println(p);
- }
- 
- public Dataset importData (String path){
-	 try
-	 {	 
-	 Dataset data = FileHandler.loadDataset(new File(path),4,","); 	// Second param '4' tells Dataset which index corresponds to class label		
-	 NormalizeMidrange nmr = new NormalizeMidrange();
-	 nmr.filter(data);
+	return null;	 		 
+ 	}
+	
+	//Weka method to read csv files
+	public Instances readData( String path){
+	 try{
+	 DataSource source = new DataSource(path);
+	 Instances data = source.getDataSet();
+	 // setting class attribute if the data format does not provide this information
+	 // For example, the XRFF format saves the class attribute information as well
+	 if (data.classIndex() == -1)
+	   data.setClassIndex(data.numAttributes() - 1);	 
 	 return data;
 	 }
 	 catch (Exception e){
 		 e.printStackTrace();
 	 }
 	 return null;
- }
- 
- public void serializeClassifier(NaiveBayesClassifier clf){
-	 try
-	 {
-	 FileOutputStream fileStream = new FileOutputStream("clf.ser");
-	 ObjectOutputStream os = new ObjectOutputStream(fileStream);
-	 print(clf.getClass());
-	 os.writeObject(clf);
-	 os.close();
+	}
+		
+	 //Utility print method
+	 private static void print(Object p){
+		 System.out.println(p);
 	 }
-	 catch (FileNotFoundException ex)
-	 	{
-			ex.printStackTrace();
-		}
-	 catch (IOException e) 
-	 	{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
- }
  
- public String getPath(){
-	 String path = System.getProperty("user.dir");
-	 return path;
- }
- 
- public static void splitTestTrain(Dataset data){	
-	 Random r = new Random();
-	 Dataset[] folds = data.folds(10,r);
-	 //ModelMaker.print(folds);
-	 //for (Dataset set : folds) {
-	 //   System.out.println(set.getClass());
-	 //}
-	 Dataset g = folds[1];
-	 print(g.toArray());
- }
- 
- public void prettyPrint( Map<Object,PerformanceMeasure> results) {
-     StringBuilder sb = new StringBuilder();
-     Iterator<Map.Entry<Object,PerformanceMeasure>> iter = results.entrySet().iterator();
-     while (iter.hasNext()) {
-         Map.Entry<Object, PerformanceMeasure> entry = iter.next();
-         sb.append(entry.getKey());
-         sb.append(':');
-         sb.append('\n');
-         sb.append(entry.getValue());
-         sb.append('\n');
-         //if (iter.hasNext()) {
-         //    sb.append(',').append(' ');
-         //}
-     }
-     print( sb.toString());
- }
+	 //Utility method to get system path (Unused 2/25/14)
+	 public String getPath(){
+		 String path = System.getProperty("user.dir");
+		 return path;
+	 }
+	 
+	 //Utility method to pretty print dictionaries (Unused 2/25/14)
+	 public void prettyPrint( Map<Object,PerformanceMeasure> results) {
+	     StringBuilder sb = new StringBuilder();
+	     Iterator<Map.Entry<Object,PerformanceMeasure>> iter = results.entrySet().iterator();
+	     while (iter.hasNext()) {
+	         Map.Entry<Object, PerformanceMeasure> entry = iter.next();
+	         sb.append(entry.getKey());
+	         sb.append(':');
+	         sb.append('\n');
+	         sb.append(entry.getValue());
+	         sb.append('\n');
+	         //if (iter.hasNext()) {
+	         //    sb.append(',').append(' ');
+	         //}
+	     }
+	     print( sb.toString());
+	 }
 
  
 
 public static void main(String[] args){
-	//This is main basic workflow of this class. Implementation can be improved
-	String testfile =  "dummydata/iris.data";
-	//String testfile =  "/Users/dgreis/Documents/workspace/finalproject/dummydata/iris.data";
+
+	//WEKA CODE (This logic should be exported out of the main method)
+
+	String testfile =  "dummydata/iris.csv";
 	ModelMaker m = new ModelMaker();
-	//String path = m.getPath();
-	Dataset dat = m.importData(testfile);
-	NaiveBayesClassifier nb = new NaiveBayesClassifier(true, true, false);
-	CrossValidation cv = new CrossValidation(nb);
-	m.prettyPrint((cv.crossValidation(dat)));
-	//m.serializeClassifier(nb);
-	//System.out.println(path);
-	
-
+	Instances data = m.readData(testfile);
+	NaiveBayes nb = new NaiveBayes();
+	try {
+		nb.buildClassifier(data);
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	System.out.println("print nb");
+	print(nb);
+	try {
+		weka.core.SerializationHelper.write("dummydata/cls.ser", nb);
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	try {
+		Classifier cls = (Classifier) weka.core.SerializationHelper.read("dummydata/cls.ser");
+		print("reprint model after deserialization");
+		print(cls);
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}		
 }
-
 
 }
