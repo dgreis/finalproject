@@ -7,9 +7,7 @@
 			<attribute name="javadoc_location" value="file:/Users/dgreis/Documents/workspace/opencsv-2.3/doc/api/"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="lib/javaml-0.1.7.jar"/>
-	<classpathentry kind="lib" path="lib/ajt-2.11.jar"/>
-	<classpathentry kind="lib" path="lib/weka-src.jar"/>
 	<classpathentry kind="lib" path="lib/weka.jar"/>
+	<classpathentry kind="lib" path="lib/weka-src.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

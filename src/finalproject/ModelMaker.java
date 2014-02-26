@@ -3,21 +3,11 @@ import au.com.bytecode.opencsv.CSVReader;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
-import java.util.Random;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.HashMap;
 
-
-import java.io.File;
 import java.io.IOException;
 import java.util.List;
-import java.util.Arrays;
 
-import net.sf.javaml.classification.evaluation.*;
-import weka.classifiers.Classifier;
+//import weka.classifiers.Classifier;
 import weka.core.converters.ConverterUtils.DataSource;
 import weka.core.Instances;
 import weka.classifiers.bayes.NaiveBayes;
@@ -25,7 +15,7 @@ import weka.classifiers.bayes.NaiveBayes;
 
 public class ModelMaker {
 	//This class takes a csv as input and outputs a serialized trained model.
-	//Main method currently loads, trains, serializes, and deserializes model (for testing)
+	//Main method currently loads, trains, serializes model (for testing)
 
 	//CSV Reader Method (Unused 2/25/14)
 	public List<String[]> readCSV(String path){
@@ -65,7 +55,7 @@ public class ModelMaker {
 	}
 		
 	 //Utility print method
-	 private static void print(Object p){
+	 public static void print(Object p){
 		 System.out.println(p);
 	 }
  
@@ -75,7 +65,7 @@ public class ModelMaker {
 		 return path;
 	 }
 	 
-	 //Utility method to pretty print dictionaries (Unused 2/25/14)
+	 /*Utility method to pretty print dictionaries (Unused 2/25/14)
 	 public void prettyPrint( Map<Object,PerformanceMeasure> results) {
 	     StringBuilder sb = new StringBuilder();
 	     Iterator<Map.Entry<Object,PerformanceMeasure>> iter = results.entrySet().iterator();
@@ -91,7 +81,7 @@ public class ModelMaker {
 	         //}
 	     }
 	     print( sb.toString());
-	 }
+	 }*/
 
  
 
@@ -113,14 +103,6 @@ public static void main(String[] args){
 	print(nb);
 	try {
 		weka.core.SerializationHelper.write("dummydata/cls.ser", nb);
-	} catch (Exception e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
-	try {
-		Classifier cls = (Classifier) weka.core.SerializationHelper.read("dummydata/cls.ser");
-		print("reprint model after deserialization");
-		print(cls);
 	} catch (Exception e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
