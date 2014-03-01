@@ -13,7 +13,7 @@ import weka.core.Instances;
 import weka.classifiers.bayes.NaiveBayes;
 
 
-public class ModelMaker {
+public class ModelTrainer {
 	//This class takes a csv as input and outputs a serialized trained model.
 	//Main method currently loads, trains, serializes model (for testing)
 
@@ -90,7 +90,7 @@ public static void main(String[] args){
 	//WEKA CODE (This logic should be exported out of the main method)
 
 	String testfile =  "dummydata/iris.csv";
-	ModelMaker m = new ModelMaker();
+	ModelTrainer m = new ModelTrainer();
 	Instances data = m.readData(testfile);
 	NaiveBayes nb = new NaiveBayes();
 	try {
