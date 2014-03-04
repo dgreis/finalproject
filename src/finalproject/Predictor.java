@@ -27,6 +27,7 @@ public class Predictor {
 	
 	//Create Instance from vector of doubles
 	private Instance makeInstance( FastVector<Attribute> fvWekaAttributes, double[] featvec){
+		
 		Instance iExample = new DenseInstance(5); 
 		iExample.setValue((Attribute)fvWekaAttributes.elementAt(0), featvec[0]);       
 		iExample.setValue((Attribute)fvWekaAttributes.elementAt(1), featvec[1]);       
@@ -37,33 +38,11 @@ public class Predictor {
 		return iExample;
 	}
 	
-	@SuppressWarnings("unchecked")
-	private FastVector<Attribute> dummyAttMaker(){
-		 Attribute Attribute1 = new Attribute("Sepal.Length");
-		 Attribute Attribute2 = new Attribute("Sepal.Width");
-		 Attribute Attribute3 = new Attribute("Petal.Length");
-		 Attribute Attribute4 = new Attribute("Petal.Width");
-		 
-		 @SuppressWarnings("rawtypes")
-		FastVector fvClassVal = new FastVector(3);
-		 fvClassVal.addElement("Iris-setosa");
-		 fvClassVal.addElement("Iris-versicolor");
-		 fvClassVal.addElement("Iris-virginica");
-		 Attribute ClassAttribute = new Attribute("Speciies", fvClassVal);
-	
-		 @SuppressWarnings("rawtypes")
-		FastVector fvWekaAttributes = new FastVector(5);
-		 fvWekaAttributes.addElement(Attribute1);    
-		 fvWekaAttributes.addElement(Attribute2);    
-		 fvWekaAttributes.addElement(Attribute3);
-		 fvWekaAttributes.addElement(Attribute4);
-		 fvWekaAttributes.addElement(ClassAttribute);
-		 
-		 return fvWekaAttributes;
-	}
+
 	
 	public double predict(double[] featvec){
-		FastVector<Attribute> atts = dummyAttMaker();
+		DictKeeper dk = new DictKeeper("dummydata/dict.ser"); 		//This file should always be stored in the same place
+		ArrayList<Attribute> atts = dk.getAttributes();
 		Instances insts = new Instances("toClas",atts,0);
 		insts.setClassIndex(insts.numAttributes() - 1);
 		Instance i = makeInstance(atts, featvec);

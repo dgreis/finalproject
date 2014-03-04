@@ -18,8 +18,15 @@ public class DictKeeper {
 	//TODO: Somewhere, we have to deal with lowercasing the tokens
 	
 	private LinkedHashMap<String, MutableDouble> dict;
-	private String dictLoc;
 
+	public DictKeeper(){
+	}
+	
+	public DictKeeper(String path){
+		loadDict(path);
+	}
+	
+	
 	private final void setDict(LinkedHashMap<String, MutableDouble> dict) {
 		this.dict = dict;
 	}
