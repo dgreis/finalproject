@@ -9,11 +9,14 @@ public class DataBuilder {
 	private LinkedHashMap<Integer,ArrayList<String>> dataMap;			//< col index, { var name (i.e. "AGE" ,  var type (i.e."NUMERIC") }
 	private HashMap<String,Integer> reverVarMap;						//< var name , col index > (Reverse dictionary for convenience)
 	private HashMap<String,HashMap<String,Double>> catVarCodeMap;			//< var name , < var value, value code >> i.e. ( <"SEX", <"FEMALE", 1.0 >>)
-	private DictKeeper dictkeeper;
+	private DictKeeper dictKeeper;
 	
 	
 	public DataBuilder(){
-		//blank versions of all class members should be initialized here.
+		dataMap = new LinkedHashMap<Integer,ArrayList<String>>();
+		reverVarMap = new HashMap<String,Integer>();
+		catVarCodeMap = new HashMap<String,HashMap<String,Double>>();
+		DictKeeper dictKeeper = new DictKeeper();
 	}
 	
 	public List<String> getHeaders( String path){
