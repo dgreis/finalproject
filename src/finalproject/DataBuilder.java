@@ -25,8 +25,8 @@ public class DataBuilder {
 	}
 	
 	public void addToDataMap(){		
-		//takes an incrementer, header value (String), and knowledge of variable type(CATEG,NUMERIC,FREETEXT)
-		//adds it to dataMap, reverVarMap and catVarCodeMap
+		//TAKES COL INDEX OF NUMERIC OR CATEGORICAL VARIABLE, header value (String), and knowledge of variable type(CATEG,NUMERIC)
+		//adds it to dataMap and catVarCodeMap (if necessary) (not reverVarMap)
 		//NOTE: inputs here will have to be hardcoded from actually looking at the sql dump.
 	}
 	
@@ -71,10 +71,10 @@ public class DataBuilder {
 		 **STEP ONE: INITIALIZE dataMaps
 		 * 
 		List = getHeaders(from sql_dump)
-		make i = 0
-		for each header:
-			run addToDataMap(use i, element from getHeaders list, and manual variable type defn)
-			i++
+		NEW: LIST of column indices that have Categorical or Numeric values
+		for each ind in list of column indices:
+			run addToDataMap(use ind, element from getHeaders list, and manual variable type defn)
+			
 		
 		**STEP TWO: POPULATE MAPS (1st pass through the data)
 		*
