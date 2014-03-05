@@ -41,8 +41,12 @@ public class Predictor {
 
 	
 	public double predict(double[] featvec){
-		DictKeeper dk = new DictKeeper("dummydata/dict.ser"); 		//This file should always be stored in the same place
-		ArrayList<Attribute> atts = dk.getAttributes();
+		//DictKeeper dk = new DictKeeper("dummydata/dict.ser"); 		//This file should always be stored in the same place
+		/*
+		 * This class can receive a json-like input. This can make sense of it using the deserialized data model
+		 * 
+		 */
+		ArrayList<Attribute> atts = dk.getAttributes();			//DataBuilder needs a getAttributes method that subsumes this one
 		Instances insts = new Instances("toClas",atts,0);
 		insts.setClassIndex(insts.numAttributes() - 1);
 		Instance i = makeInstance(atts, featvec);
