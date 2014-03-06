@@ -52,12 +52,12 @@ public class DictKeeper {
 		for (String key : map.keySet()) {
 			map.put(key, new MutableDouble(0.0) );
 		}
-		FileOutputStream fileOut = new FileOutputStream("dummydata/dict.ser");
+		FileOutputStream fileOut = new FileOutputStream("dummydata/dummodel/dict.ser");
 	    ObjectOutputStream out = new ObjectOutputStream(fileOut);
 	    out.writeObject(map);
 	    out.close();
 	    fileOut.close();
-	    System.out.println("Serialized data is saved in dummydata/dict.ser");
+	    System.out.println("Serialized data is saved in dummydata/dummodel/dict.ser");
 		} 
 		catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -106,8 +106,8 @@ public class DictKeeper {
 	public double[] makeTextFeatVec(List<String> parsedText){
 		if (this.dict == null)
 			System.out.println("MapKeeper must be associated with a map before it can create a text feature vector. Ending Program...");
-		System.out.println("this.dict at beginning");
-		System.out.println(this.dict);
+		//System.out.println("this.dict at beginning");
+		//System.out.println(this.dict);
 		//LinkedHashMap<String, MutableDouble> freshMap = deserializeMap(this.dictLoc, false);
 		LinkedHashMap<String,MutableDouble> freshDict = new LinkedHashMap<String,MutableDouble>();
 		Iterator it = this.dict.entrySet().iterator();
