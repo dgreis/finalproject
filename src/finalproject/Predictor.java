@@ -23,7 +23,6 @@ public class Predictor {
 		try {
 			cls = (Classifier) weka.core.SerializationHelper.read(savmodel);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}*/
@@ -37,22 +36,15 @@ public class Predictor {
 	}
 	
 	//Create Instance from vector of doubles
-	private Instance makeInstance( ArrayList<Attribute> atts, double[] featvec){
+	public Instance makeInstance( ArrayList<Attribute> atts, double[] featvec){
 		
 		Instance iExample = new DenseInstance(atts.size());
-		int i = 0;
-		Iterator it = atts.iterator();
-	    while (it.hasNext()) {
-	        String tok = (String)it.next();
-	        //String key = pairs.getKey();
-	        myList.add(new Attribute(tok));
-	    }
-		iExample.setValue((Attribute)fvWekaAttributes.elementAt(0), featvec[0]);       
-		iExample.setValue((Attribute)fvWekaAttributes.elementAt(1), featvec[1]);       
-		iExample.setValue((Attribute)fvWekaAttributes.elementAt(2), featvec[2]); 
-		iExample.setValue((Attribute)fvWekaAttributes.elementAt(3), featvec[3]); 	
-		iExample.setValue((Attribute)fvWekaAttributes.elementAt(4), "Iris-setosa");
-		iExample.setMissing(4);
+		for( int i = 0 ; i < atts.size() ; i++ )
+        {
+			iExample.setValue(i, featvec[i]);
+    	}	
+		//iExample.setValue((Attribute)fvWekaAttributes.elementAt(4), "Iris-setosa");
+		//iExample.setMissing(4);
 		return iExample;
 	}
 	
@@ -92,7 +84,6 @@ public class Predictor {
 
 	    	           
 			} catch (JSONException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}            
             		
@@ -119,27 +110,20 @@ public class Predictor {
 		ArrayList<Attribute> atts = db.getAttributes();	
 		Instances insts = new Instances("toClas",atts,0);
 		insts.setClassIndex(insts.numAttributes() - 1);
-		//TODO: transform json into a featvec
-		double[] featVec = makeFeatVec(json);
-		Instance i = makeInstance(atts, featVec);
-		
+		double[] featVec = makeFeatVector(json);
+		Instance i = makeInstance(atts, featVec);		
 		insts.add(i);
 		try {
 			double predic = cls.classifyInstance(insts.instance(0));
 			System.out.println(predic + " -> " + insts.classAttribute().value((int) predic));
 			return predic;
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return -999.99;	//This return value means something went wrong.
 	}
 		
 	public static void main(String[] args){
-		Predictor p = new Predictor("dummydata/cls.ser");
-		double[] f = {2.4,5.5,3.0,5.5};
-		double pred = p.predict(f);
-		//System.out.println(pred);
 	}
 	
 }

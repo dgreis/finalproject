@@ -1,7 +1,7 @@
 package finalproject;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
+import weka.core.*;
 
 import org.json.*;
 
@@ -29,9 +29,12 @@ public class PredictorTestDriver {
             System.out.println(d);
         }
         
+        System.out.println("Now test whether instance is made properly");
         DataBuilder db = p.getdb();
-        System.out.println(db.dictKeeper.getDict().size());
-		
+        ArrayList<Attribute> atts = db.getAttributes();
+        Instance i = p.makeInstance(atts, dlist);
+        System.out.println(i);
+        
 		
 		
 	}

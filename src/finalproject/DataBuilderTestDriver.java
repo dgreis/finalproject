@@ -18,7 +18,7 @@ public class DataBuilderTestDriver {
 		HashMap<String,HashMap<String,Double>> catmap = db.catVarCodeMap;
 		LinkedHashMap<Integer,ArrayList<String>>datmap	= db.dataMap;
 		DictKeeper dk = db.dictKeeper;
-		HashMap<String,Integer>revmap = db.reverVarMap;
+		LinkedHashMap<String,Integer>revmap = db.reverVarMap;
 		
 		dk.addToDict(Arrays.asList("Possibly","influenza.","I'm","not","sure.","Free","text","free","text","FREE","TEXT","Beep","Bloop"));
 		

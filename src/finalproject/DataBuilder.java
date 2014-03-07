@@ -18,14 +18,14 @@ import weka.core.Attribute;
 public class DataBuilder {
 	
 	public LinkedHashMap<Integer,ArrayList<String>> dataMap;			//< col index, { var name (i.e. "AGE" ,  var type (i.e."NUMERIC") }
-	public HashMap<String,Integer> reverVarMap;						//< var name , col index > (Reverse dictionary for convenience)
+	public LinkedHashMap<String,Integer> reverVarMap;						//< var name , col index > (Reverse dictionary for convenience)
 	public HashMap<String,HashMap<String,Double>> catVarCodeMap;			//< var name , < var value, value code >> i.e. ( <"SEX", <"FEMALE", 1.0 >>)
 	public DictKeeper dictKeeper;
 	
 	
 	public DataBuilder(){
 		dataMap = new LinkedHashMap<Integer,ArrayList<String>>();
-		reverVarMap = new HashMap<String,Integer>();
+		reverVarMap = new LinkedHashMap<String,Integer>();
 		catVarCodeMap = new HashMap<String,HashMap<String,Double>>();
 		dictKeeper = new DictKeeper();
 	}
@@ -69,7 +69,7 @@ public class DataBuilder {
 		this.dataMap=dm;
 	}
 	
-	private void setReverVarMap (HashMap<String,Integer> rvm){
+	private void setReverVarMap (LinkedHashMap<String,Integer> rvm){
 		this.reverVarMap = rvm;
 	}
 	
@@ -84,7 +84,22 @@ public class DataBuilder {
 		Iterator it = keySet.iterator();
 	    while (it.hasNext()) {
 	        String tok = (String)it.next();
-	        nonTextAtts.add(new Attribute(tok));
+	        if (catVarCodeMap.containsKey(tok)){
+//	        	System.out.println(catVarCodeMap.get(tok));
+	        	int ents = catVarCodeMap.get(tok).size();
+	        	List my_nominal_values = new ArrayList(ents); 
+	        	double label = 1.0;
+	        	for( int i = 0 ; i < ents ; i++ )
+	            {
+	        		String strVal = String.valueOf(label);
+	        		my_nominal_values.add(strVal);
+	        		label = label + 1.0;
+	        	}
+	        	nonTextAtts.add(new Attribute(tok, my_nominal_values));       
+	        }
+	        else{
+	        	nonTextAtts.add(new Attribute(tok));
+	        }
 	    }
 	    ArrayList<Attribute> textAtts = this.dictKeeper.getAttributes();
 	    ArrayList<Attribute> attList = new ArrayList<Attribute>();
@@ -224,7 +239,7 @@ public class DataBuilder {
 	      {
 	         FileInputStream fileIn = new FileInputStream(path);
 	         ObjectInputStream in = new ObjectInputStream(fileIn);
-	         HashMap m = (HashMap) in.readObject();
+	         LinkedHashMap m = (LinkedHashMap) in.readObject();
 	         in.close();
 	         fileIn.close();
 	         setReverVarMap(m);
