@@ -4,6 +4,7 @@ import au.com.bytecode.opencsv.CSVReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -63,6 +64,21 @@ public class DataBuilder {
 		//makes pass through entire file, executes catVarCodeMapUpdater for each categorical variable on each line
 		//parses all free text fields using freeTextParser, feeds results to DictKeeper
 		//this method will know which fields are numeric/free-text/categorical by looking it up the dataMap
+		try {
+			CSVReader reader = new CSVReader(new FileReader("dummydata/iris.csv"));
+			String [] nextLine;
+			String[] headers = reader.readNext();
+		    while ((nextLine = reader.readNext()) != null) {
+		        //nextLine[] is an array of values from the line
+		        //System.out.println(nextLine[0] + nextLine[1] + "etc...");}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 	
 	private void setDataMap(LinkedHashMap<Integer,ArrayList<String>> dm){
@@ -77,8 +93,7 @@ public class DataBuilder {
 		this.catVarCodeMap = cvcm;
 	}
 	
-	public ArrayList<Attribute> getAttributes(){		//TODO: CHECK IF THESE ARE ORDERED CORRECTLY
-		
+	public ArrayList<Attribute> getAttributes(){	
 		Collection<String> keySet = this.reverVarMap.keySet();
 		ArrayList<Attribute> nonTextAtts = new ArrayList<Attribute>();
 		Iterator it = keySet.iterator();
