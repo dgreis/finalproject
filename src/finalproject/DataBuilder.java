@@ -13,7 +13,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.*;
 
-import org.apache.commons.lang3.mutable.MutableDouble;
 
 import weka.core.Attribute;
 
@@ -106,7 +105,7 @@ public class DataBuilder {
 		//given value of a categorical variable, checks whether it currently exists in catVarCodeMap. If not, adds it and encodes the value.
 	}
 	
-	private void populateMaps(String path){
+	private void populateMaps(String path){	 //TODO: HANDLE EXTRA LINES AT END OF FILE
 		//makes pass through entire file, executes catVarCodeMapUpdater for each categorical variable on each line
 		//parses all free text fields using freeTextParser, feeds results to DictKeeper
 		//this method will know which fields are numeric/free-text/categorical by looking it up the dataMap
@@ -372,16 +371,27 @@ public class DataBuilder {
 		 **STEP ONE: INITIALIZE dataMaps
 		 */
 		
-		String INPUT = "dummydata/demo_databuilder.csv";
+		String INPUT = "dummydata/iris.csv";
 		
 		DataBuilder db = new DataBuilder();
+		//DUMMYTEST
+		/*
 		db.addToDataMap(0, "SEX", "CATEG");
 		db.addToDataMap(1, "AGE", "NUMER");
 		//db.addToDataMap(2, "UNCODED_DIAGNOSIS", "CATEG");
 		db.addToDataMap(3, "ACTUAL_DIAGNOSIS", "CATEG");
 		//db.addToDataMap("4", "FREETEXT", "CATEG");
 		//db.addToDataMap("5", "MOREFREETEXT", "CATEG");
-		db.addToDataMap(6, "BLOOD_PRESSURE", "NUMER");
+		db.addToDataMap(6, "BLOOD_PRESSURE", "NUMER");*/
+		
+		//IRISTEST
+		db.addToDataMap(0, "Sepal.Length", "NUMER");
+		db.addToDataMap(1, "Sepal.Width", "NUMER");
+		db.addToDataMap(2, "Petal.Length", "NUMER");
+		db.addToDataMap(3,"Petal.Width","NUMER");
+		db.addToDataMap(4,"Species","CATEG");
+		
+	
 			
 		
 		//STEP TWO: POPULATE MAPS (1st pass through the data)		
@@ -420,6 +430,7 @@ public class DataBuilder {
 		db.saveCatVarCodeMap();
 		db.saveDataMap();
 		db.saveReverVarMap();
+		db.dictKeeper.saveDict();
 	
 	
 
