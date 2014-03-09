@@ -77,7 +77,7 @@ public class Predictor {
 	            	}
 				}
 	            else{
-	            	String[] splited = val.split("\\s+");			//TODO: FIX WHEN PARSETEXT IS READY
+	            	String[] splited = db.parseFreeText(val);
 	        		for (String s: splited)
 	         	        parsedText.add(s);
 	            }

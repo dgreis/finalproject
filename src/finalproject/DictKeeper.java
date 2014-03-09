@@ -15,7 +15,6 @@ import weka.core.Attribute;
 import weka.core.FastVector;
 
 public class DictKeeper {
-	//TODO: Somewhere, we have to deal with lowercasing the tokens
 	
 	private LinkedHashMap<String, MutableDouble> dict;
 
@@ -40,7 +39,6 @@ public class DictKeeper {
 		return dict;
 	}
 	
-	//TODO: Method to serialize map
 	public void saveDict(){
 		try {
 		LinkedHashMap<String, MutableDouble> map = this.dict;
@@ -60,14 +58,11 @@ public class DictKeeper {
 	    System.out.println("Serialized data is saved in dummydata/dummodel/dict.ser");
 		} 
 		catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}	
 	}
-	//TODO: Method to deserialize map
 	public void loadDict (String path){
 	      try
 	      {
@@ -102,7 +97,6 @@ public class DictKeeper {
 	}
 
 	
-	//TODO: Method to make values with old keys
 	public double[] makeTextFeatVec(List<String> parsedText){
 		if (this.dict == null)
 			System.out.println("MapKeeper must be associated with a map before it can create a text feature vector. Ending Program...");
