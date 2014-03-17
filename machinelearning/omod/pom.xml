@@ -22,7 +22,32 @@
 			<artifactId>library-name</artifactId> 
 		</dependency> 
 		-->
-		
+<dependency>
+	<groupId>jsonlibrary</groupId>
+    <artifactId>jsonlibrary</artifactId>
+    <version>1.0</version>
+    <scope>compile</scope>
+</dependency>
+
+<dependency>
+	<groupId>opencsv</groupId>
+    <artifactId>opencsv</artifactId>
+    <version>1.0</version>
+    <scope>compile</scope>
+</dependency>
+
+<dependency>
+	<groupId>commonslang</groupId>
+    <artifactId>commonslang</artifactId>
+    <version>1.0</version>
+</dependency>
+
+<dependency>
+    <groupId>wekalibrary</groupId>
+    <artifactId>wekalibrary</artifactId>
+    <version>1.0</version>
+</dependency>
+
 		<!-- Begin OpenMRS modules -->
 		
 		<dependency>
@@ -71,6 +96,10 @@
 		</dependency>
 		
 		<!-- End OpenMRS core -->
+
+
+
+
 
 	</dependencies>
 

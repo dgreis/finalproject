@@ -21,6 +21,22 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import au.com.bytecode.opencsv.CSVReader;
+
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+
+import java.io.IOException;
+import java.util.List;
+
+//import weka.classifiers.Classifier;
+import weka.core.converters.ConverterUtils.DataSource;
+import weka.core.Instances;
+import weka.classifiers.bayes.NaiveBayes;
+
+import org.openmrs.module.machinelearning.mlcode.*;
+
+
 /**
  * The main controller.
  */
@@ -30,7 +46,15 @@ public class  runmodelcontroller {
 	protected final Log log = LogFactory.getLog(getClass());
 	
 	@RequestMapping(value = "/module/machinelearning/runmodel", method = RequestMethod.GET)
-	public void runmodel(ModelMap model) {
+	public void runmodel(ModelMap model) 
+	{	
+		String testfile =  "dummydata/iris.csv";
+		ModelTrainer m = new ModelTrainer();
+		Instances data = m.readData(testfile);
+		NaiveBayes nb = new NaiveBayes();
+		
 		model.addAttribute("user", Context.getAuthenticatedUser());
+		
+		
 	}
 }

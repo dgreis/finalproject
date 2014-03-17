@@ -48,6 +48,7 @@ public class AdminList extends AdministrationSectionExt {
 		map.put("/module/machinelearning/manage.form", "machinelearning.manage");
 		map.put("/module/machinelearning/createip.form", "create input file");
 		map.put("/module/machinelearning/runmodel.form", "run model");
+		map.put("/module/machinelearning/predictorapi.form", "call api");
 		return map;
 	}
 	

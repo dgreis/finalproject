@@ -52,6 +52,13 @@
 			-->
 			
 			
+			<dependency>
+
+    <groupId>wekalibrary</groupId>
+    <artifactId>wekalibrary</artifactId>
+    <version>1.0</version>
+    <scope>compile</scope>
+</dependency>
 
 			<!-- Begin OpenMRS core -->
 			
@@ -96,6 +103,11 @@
 			</dependency>
 						
 			<!-- End OpenMRS core -->
+			
+				
+				
+	
+
 
 		</dependencies>
 	</dependencyManagement>
@@ -121,6 +133,7 @@
 					<artifactId>maven-dependency-plugin</artifactId>
 					<version>2.4</version>
 				</plugin>
+				
 			</plugins>
 		</pluginManagement>
 	</build>

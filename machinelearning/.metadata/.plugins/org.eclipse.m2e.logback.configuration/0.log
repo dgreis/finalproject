@@ -1,0 +1,45 @@
+2014-03-13 14:00:22,419 [ModalContext] WARN  o.e.m.i.discovery.MavenDiscovery - CatalogItem org.eclipse.m2e.discovery.lifecyclemapping.m2e-egit does not contain lifecycle mapping metadata
+2014-03-13 14:00:22,430 [ModalContext] WARN  o.e.m.i.discovery.MavenDiscovery - CatalogItem org.eclipse.m2e.discovery.lifecyclemapping.m2e-subversive does not contain lifecycle mapping metadata
+2014-03-13 14:00:22,431 [ModalContext] WARN  o.e.m.i.discovery.MavenDiscovery - CatalogItem org.eclipse.m2e.discovery.lifecyclemapping.m2e-subclipse does not contain lifecycle mapping metadata
+2014-03-13 14:00:33,266 [Worker-3] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: org.openmrs.module:machinelearning-api:1.0-SNAPSHOT @ /Users/rohansalantry/Desktop/dm/finalproject/machinelearning/api/pom.xml.
+2014-03-13 14:00:35,046 [Worker-3] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: org.openmrs.module:machinelearning-omod:1.0-SNAPSHOT @ /Users/rohansalantry/Desktop/dm/finalproject/machinelearning/omod/pom.xml.
+2014-03-13 14:00:38,401 [Worker-3] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /api/src/main/java
+2014-03-13 14:00:38,402 [Worker-3] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /api/src/main/resources
+2014-03-13 14:00:38,403 [Worker-3] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /api/src/test/java
+2014-03-13 14:00:38,695 [Worker-3] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /omod/src/main/java
+2014-03-13 14:00:38,695 [Worker-3] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /omod/src/main/resources
+2014-03-13 14:00:38,696 [Worker-3] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /omod/src/main/webapp
+2014-03-13 14:00:38,696 [Worker-3] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /omod/src/main/webapp
+2014-03-13 14:00:38,719 [Worker-3] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /omod/src/test/java
+2014-03-13 14:00:38,857 [Worker-3] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Project import completed 9 sec
+2014-03-13 14:00:39,248 [Worker-1] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: org.openmrs.module:machinelearning-api:1.0-SNAPSHOT @ /Users/rohansalantry/Desktop/dm/finalproject/machinelearning/api/pom.xml.
+2014-03-13 14:00:39,745 [Worker-3] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update started
+2014-03-13 14:00:39,747 [Worker-3] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update completed: 0 sec
+2014-03-13 14:00:41,012 [Worker-0] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: org.openmrs.module:machinelearning-api:1.0-SNAPSHOT @ /Users/rohansalantry/Desktop/dm/finalproject/machinelearning/api/pom.xml.
+2014-03-13 14:00:41,427 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-03-13 14:00:41,451 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 7 resources
+2014-03-13 14:00:41,499 [Worker-0] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: org.openmrs.module:machinelearning-omod:1.0-SNAPSHOT @ /Users/rohansalantry/Desktop/dm/finalproject/machinelearning/omod/pom.xml.
+2014-03-13 14:00:41,715 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-03-13 14:00:41,715 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/rohansalantry/Desktop/dm/finalproject/machinelearning/api/src/test/resources
+2014-03-13 14:00:43,637 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-03-13 14:00:43,660 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2014-03-13 14:00:43,661 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-03-13 14:00:43,661 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/rohansalantry/Desktop/dm/finalproject/machinelearning/api/src/test/resources
+2014-03-13 14:00:43,689 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-03-13 14:00:43,690 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2014-03-13 14:00:43,749 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 3 resources to web/module
+2014-03-13 14:00:43,751 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource to web/module
+2014-03-13 14:00:43,759 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-03-13 14:00:43,759 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/rohansalantry/Desktop/dm/finalproject/machinelearning/omod/src/test/resources
+2014-03-13 14:00:44,809 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-03-13 14:00:44,811 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2014-03-13 14:00:44,818 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 3 resources to web/module
+2014-03-13 14:00:44,818 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource to web/module
+2014-03-13 14:00:44,820 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-03-13 14:00:44,820 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/rohansalantry/Desktop/dm/finalproject/machinelearning/omod/src/test/resources
+2014-03-13 14:01:21,129 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-03-13 14:01:21,131 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2014-03-13 14:01:21,135 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 3 resources to web/module
+2014-03-13 14:01:21,135 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource to web/module
+2014-03-13 14:01:21,137 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-03-13 14:01:21,137 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/rohansalantry/Desktop/dm/finalproject/machinelearning/omod/src/test/resources
