@@ -84,7 +84,7 @@ public static void main(String[] args){
 		e.printStackTrace();
 	}
 	try {
-		weka.core.SerializationHelper.write("dummydata/cls.ser", nb);
+		weka.core.SerializationHelper.write(modelDir + "/cls.ser", nb);
 	} catch (Exception e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();

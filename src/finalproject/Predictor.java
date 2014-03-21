@@ -20,15 +20,16 @@ public class Predictor {
 	private DataBuilder db;
 	
 	/*public Predictor(){
-		try {
-			cls = (Classifier) weka.core.SerializationHelper.read(savmodel);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+
 	}*/
 	
 	public Predictor(String modelFolder){
-		db = new DataBuilder(modelFolder);		
+		db = new DataBuilder(modelFolder);
+		try {
+			cls = (Classifier) weka.core.SerializationHelper.read(modelFolder + "/cls.ser");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public DataBuilder getdb(){
