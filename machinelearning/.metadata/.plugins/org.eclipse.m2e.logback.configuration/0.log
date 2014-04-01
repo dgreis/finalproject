@@ -43,3 +43,27 @@
 2014-03-13 14:01:21,135 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource to web/module
 2014-03-13 14:01:21,137 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
 2014-03-13 14:01:21,137 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/rohansalantry/Desktop/dm/finalproject/machinelearning/omod/src/test/resources
+2014-04-01 13:39:27,440 [Worker-2] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: org.openmrs.module:machinelearning-api:1.0-SNAPSHOT @ /Users/rohansalantry/Desktop/dm/machinelearning/api/pom.xml.
+2014-04-01 13:39:32,191 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-04-01 13:39:32,225 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 7 resources
+2014-04-01 13:39:32,345 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-04-01 13:39:32,345 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/rohansalantry/Desktop/dm/machinelearning/api/src/test/resources
+2014-04-01 13:39:33,841 [Worker-2] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: org.openmrs.module:machinelearning-omod:1.0-SNAPSHOT @ /Users/rohansalantry/Desktop/dm/machinelearning/omod/pom.xml.
+2014-04-01 13:39:34,644 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-04-01 13:39:34,646 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 6 resources
+2014-04-01 13:39:34,740 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 3 resources to web/module
+2014-04-01 13:39:34,740 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource to web/module
+2014-04-01 13:39:34,751 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-04-01 13:39:34,751 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/rohansalantry/Desktop/dm/machinelearning/omod/src/test/resources
+2014-04-01 13:39:35,154 [Worker-4] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: org.openmrs.module:machinelearning-api:1.0-SNAPSHOT @ /Users/rohansalantry/Desktop/dm/machinelearning/api/pom.xml.
+2014-04-01 13:39:35,523 [Worker-4] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: org.openmrs.module:machinelearning-omod:1.0-SNAPSHOT @ /Users/rohansalantry/Desktop/dm/machinelearning/omod/pom.xml.
+2014-04-01 13:39:36,376 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-04-01 13:39:36,396 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2014-04-01 13:39:36,398 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-04-01 13:39:36,399 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/rohansalantry/Desktop/dm/machinelearning/api/src/test/resources
+2014-04-01 13:39:36,421 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-04-01 13:39:36,423 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2014-04-01 13:39:36,423 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource to web/module
+2014-04-01 13:39:36,424 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource to web/module
+2014-04-01 13:39:36,426 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-04-01 13:39:36,426 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/rohansalantry/Desktop/dm/machinelearning/omod/src/test/resources

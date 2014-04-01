@@ -63,8 +63,6 @@ public class  predictorapi
 	{
 		Predictor p = new Predictor("/Users/rohansalantry/Desktop/dm/machinelearning/omod/src/main/resources");
 		
-		
-		
 		JSONObject obj = new JSONObject();
 		
 		try {
