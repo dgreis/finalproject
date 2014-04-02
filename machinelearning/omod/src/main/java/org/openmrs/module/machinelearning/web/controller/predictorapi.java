@@ -61,7 +61,13 @@ public class  predictorapi
 
 	public Object predictorapi(ModelMap model) 
 	{
-		Predictor p = new Predictor("/Users/rohansalantry/Desktop/dm/machinelearning/omod/src/main/resources");
+	//	System.out.println("--------");
+	//	System.out.println();
+		
+		// String workingDir = System.getProperty("user.dir");
+		// System.out.println("Current working directory : " + workingDir);
+		 
+		Predictor p = new Predictor(this.getClass().getClassLoader().getResource("").getPath());
 		
 		JSONObject obj = new JSONObject();
 		

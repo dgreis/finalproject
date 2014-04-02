@@ -155,8 +155,10 @@ private void createfileconcepts(List<Concept> concepts)
  		writer.append(c.getConceptClass().getName());
  		writer.append(",");
  		
+ 		if(c.getDescription() != null){
+ 			writer.append(c.getDescription().getDescription());	
+ 		}
  		
- 		writer.append(c.getDescription().getDescription());	
  		
         writer.append('\n');	
         
