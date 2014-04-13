@@ -235,7 +235,9 @@ protected final Log log = LogFactory.getLog(getClass());
 			
 			
 			CSVWriter writer = new CSVWriter(new FileWriter("obs_patients.csv"), ',',CSVWriter.NO_QUOTE_CHARACTER);
-		
+			
+			System.out.println("----------current location---------123142141213");
+			System.out.println(this.getClass().getClassLoader().getResource("").getPath());
 		
 		
 		
@@ -251,7 +253,8 @@ protected final Log log = LogFactory.getLog(getClass());
 		
 		
 		
-		cnt = 100L;
+		cnt = 1000L;
+		
 		int batchsize = 20;
 		List<Object[]> batchoutput;
 		

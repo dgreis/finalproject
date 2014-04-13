@@ -57,7 +57,7 @@ public class HibernatemachinelearningDAO implements machinelearningDAO {
 	public List<Object[]> getpatienscustom(int batchsize,int i) {
 		// TODO Auto-generated method stub
 		
-		String query = "select * from obs,person where obs.person_id=person.person_id limit "+Integer.toString(batchsize)+","+Integer.toString(i)+";";
+		String query = "select * from obs,person where obs.person_id=person.person_id and encounter_id is not null order by encounter_id limit "+Integer.toString(batchsize)+","+Integer.toString(i)+";";
 		
 		List<Object[]> batch = sessionFactory.getCurrentSession().createSQLQuery(query).list(); 
 		//List<Object> batch = new ArrayList<Person>();
