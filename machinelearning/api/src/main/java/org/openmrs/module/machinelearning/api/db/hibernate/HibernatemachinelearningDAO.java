@@ -13,10 +13,22 @@
  */
 package org.openmrs.module.machinelearning.api.db.hibernate;
 
+import java.math.BigInteger;
+import java.util.List;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.SessionFactory;
+import org.openmrs.Patient;
+import org.openmrs.Person;
+
+import java.util.ArrayList;
+
+import org.openmrs.api.context.Context;
 import org.openmrs.module.machinelearning.api.db.machinelearningDAO;
+import org.hibernate.SQLQuery;
+import org.hibernate.Session;
+import org.openmrs.api.PersonService;
 
 /**
  * It is a default implementation of  {@link machinelearningDAO}.
@@ -39,4 +51,25 @@ public class HibernatemachinelearningDAO implements machinelearningDAO {
     public SessionFactory getSessionFactory() {
 	    return sessionFactory;
     }
+
+    // added custom method - rohan
+	@Override
+	public List<Object[]> getpatienscustom(int batchsize,int i) {
+		// TODO Auto-generated method stub
+		
+		String query = "select * from obs,person where obs.person_id=person.person_id limit "+Integer.toString(batchsize)+","+Integer.toString(i)+";";
+		
+		List<Object[]> batch = sessionFactory.getCurrentSession().createSQLQuery(query).list(); 
+		//List<Object> batch = new ArrayList<Person>();
+		//PersonService ps = Context.getPersonService();
+		return batch;
+		//return null;
+	}
+
+	@Override
+	public BigInteger getobscount() {
+		List<BigInteger> countx = sessionFactory.getCurrentSession().createSQLQuery("select count(1) from obs;").list();
+		return countx.get(0);
+		
+	}
 }

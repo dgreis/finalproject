@@ -13,8 +13,16 @@
  */
 package org.openmrs.module.machinelearning.api;
 
+import org.openmrs.Patient;
+import org.openmrs.Person;
 import org.openmrs.api.OpenmrsService;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.math.BigInteger;
+import java.util.List;
+
+//import org.openmrs.Patient;
+
 
 /**
  * This service exposes module's core functionality. It is a Spring managed bean which is configured in moduleApplicationContext.xml.
@@ -33,4 +41,9 @@ public interface machinelearningService extends OpenmrsService {
 	 * Add service methods here
 	 * 
 	 */
+	
+	List<Object[]> getpatienscustom(int batchsize, int i);
+
+	BigInteger getobscount();
+	
 }

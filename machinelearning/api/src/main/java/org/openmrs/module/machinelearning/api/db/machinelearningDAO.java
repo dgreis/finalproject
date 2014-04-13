@@ -15,6 +15,11 @@ package org.openmrs.module.machinelearning.api.db;
 
 import org.openmrs.module.machinelearning.api.machinelearningService;
 
+import java.math.BigInteger;
+import java.util.List;
+
+import org.openmrs.Patient;
+
 /**
  *  Database methods for {@link machinelearningService}.
  */
@@ -23,4 +28,13 @@ public interface machinelearningDAO {
 	/*
 	 * Add DAO methods here
 	 */
+	
+	/*
+	 * returns list of patients in a batch - rohan
+	 */
+	List<Object[]> getpatienscustom(int batchsize, int i);
+	
+	BigInteger getobscount();
+	
+	
 }

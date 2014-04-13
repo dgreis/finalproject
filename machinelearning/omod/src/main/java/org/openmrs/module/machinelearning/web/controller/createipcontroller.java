@@ -15,12 +15,12 @@ package org.openmrs.module.machinelearning.web.controller;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.openmrs.api.ObsService;
 import org.openmrs.api.context.Context;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
 import org.openmrs.Patient;
 import org.openmrs.Obs;
 import org.openmrs.Person;
@@ -28,9 +28,23 @@ import org.openmrs.Concept;
 import org.openmrs.Encounter;
 
 import java.util.List;
-
+import java.util.ArrayList;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.math.BigInteger;
+
+import au.com.bytecode.opencsv.CSVReader;
+import au.com.bytecode.opencsv.CSVWriter;
+
+
+// custom built service for the module - rohan
+
+
+
+
+
+import org.openmrs.module.machinelearning.api.machinelearningService;
 
 
 /**
@@ -40,8 +54,6 @@ import java.io.IOException;
 
 
 public class  createipcontroller {
-	
-	
 	
 	
 private void createfilepatients(List<Patient> patients) 
@@ -80,8 +92,6 @@ private void createfilepatients(List<Patient> patients)
 		     e.printStackTrace();
 		} 
 	 
-
-
 		
 	}
 
@@ -182,30 +192,123 @@ private void createfileconcepts(List<Concept> concepts)
 private void createfilenotes(){
 	
 }
+
+private void printoutput(List<Object[]> pr,CSVWriter writer) throws IOException{
+	String[] singlerow = new String[pr.get(0).length];
+	
+	int i; // will go from zero to column length
+	for(Object[] p:pr)
+	{
+		i=0; //reset counter
+		for(Object column:p)
+		{
+			if(column == null){
+				singlerow[i] = "NULL";
+			}
+			else
+			{
+				singlerow[i] = column.toString();	
+			}
+			
+			i++;
+			System.out.print(column+"\t");
+		}
+		writer.writeNext(singlerow);
+		System.out.println();
+	}
+	// flush output to disc
+	writer.flush();
+	
+	
+	System.out.println("batch process");
+}
+
+
 protected final Log log = LogFactory.getLog(getClass());
 	
 	@RequestMapping(value = "/module/machinelearning/createip", method = RequestMethod.GET)
 	public void createip(ModelMap model) 
 	{
+	
+		// dump obs table in batches of 50
+		try {
+			
+			
+			CSVWriter writer = new CSVWriter(new FileWriter("obs_patients.csv"), ',',CSVWriter.NO_QUOTE_CHARACTER);
 		
+		
+		
+		
+		BigInteger count = Context.getService(machinelearningService.class).getobscount();
+		
+		double cnt = count.doubleValue();
+		
+		long cntlong = (long) cnt;
+		
+		
+		//int cnt = count.intValue();
+		System.out.println("Count:"+count.toString());
+		
+		
+		
+		cnt = 100L;
+		int batchsize = 20;
+		List<Object[]> batchoutput;
+		
+		int flag = 0;
+		int currentcnt = 0;
+		
+		while(currentcnt < cnt)
+		{
+			if(flag==0)
+			{
+				batchoutput = Context.getService(machinelearningService.class).getpatienscustom(0,batchsize);
+				flag = 1;
+				currentcnt = 20;
+			}
+			else{
+				currentcnt = currentcnt + 20;
+				batchoutput = Context.getService(machinelearningService.class).getpatienscustom(currentcnt,batchsize);
+				
+			}
+			printoutput(batchoutput,writer);
+			
+			
+		}
+		
+		
+		writer.close();
+		
+		
+		System.out.println("custom service result");
+		
+		
+		
+		//sessionFactory.getCurrentSession()
 		model.put("me", Context.getAuthenticatedUser());
+				
 		
-		// obs output
-		List<Obs> someObsList = Context.getObsService().getObservations(null, null, null, null, null, null, null, null, null, null, null, true);;
+		//List<Patient> patients = Context.getPatientService().getAllPatients();
+		System.out.println("before query");
+	
+		
+		// link to api : http://resources.openmrs.org/doc/org/openmrs/api/ObsService.html
+		// obs output, find for these patients only
+		/*
+		List<Obs> someObsList = Context.getObsService().getObservations(people, null, null, null, null, null, null, null, null, null, null, true);
 		createfileobs(someObsList);
-  			
-		// patients output
+  		*/
 		
-		List<Patient> patients = Context.getPatientService().getAllPatients();
-		createfilepatients(patients);
-		
+		/*
 		// creating concepts
 		List<Concept> concepts = Context.getConceptService().getAllConcepts();
 		createfileconcepts(concepts);
+		*/
+		
+		List<Patient> temp = new ArrayList<Patient>();
 		
 		
-		
-		model.addAttribute("favorites",patients);
+		model.addAttribute("favorites",temp);
 		
 		
 		// pass control to createip.jsp file passing the two values
@@ -213,7 +316,11 @@ protected final Log log = LogFactory.getLog(getClass());
         
  		//model.addAttribute("obs",someObsList);
 
- 
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			
+		}
 
 	}
 

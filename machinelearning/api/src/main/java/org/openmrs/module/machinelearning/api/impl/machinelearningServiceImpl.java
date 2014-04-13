@@ -13,11 +13,18 @@
  */
 package org.openmrs.module.machinelearning.api.impl;
 
+import java.math.BigInteger;
+import java.util.List;
+
+import org.openmrs.Patient;
+import org.openmrs.Person;
 import org.openmrs.api.impl.BaseOpenmrsService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.module.machinelearning.api.machinelearningService;
 import org.openmrs.module.machinelearning.api.db.machinelearningDAO;
+
+
 
 /**
  * It is a default implementation of {@link machinelearningService}.
@@ -41,4 +48,21 @@ public class machinelearningServiceImpl extends BaseOpenmrsService implements ma
     public machinelearningDAO getDao() {
 	    return dao;
     }
+
+	
+
+	@Override
+	public BigInteger getobscount() {
+		// TODO Auto-generated method stub
+		return dao.getobscount();
+	}
+
+	@Override
+	public  List<Object[]> getpatienscustom(int batchsize, int i) 
+	{
+		// TODO Auto-generated method stub
+		return dao.getpatienscustom(batchsize,i);
+		
+	//	return null;
+	}
 }
