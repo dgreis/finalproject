@@ -1,4 +1,4 @@
-package finalproject;
+package sqlninja;
 
 import java.util.*;
 
@@ -137,6 +137,7 @@ public class Encounter {
     	StringBuilder builder = new StringBuilder();
     	for(String s : stringList) {
     	    builder.append(s);
+    	    builder.append(" ");
     	}
     	return builder.toString();	
     	}
