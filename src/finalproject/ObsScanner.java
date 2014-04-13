@@ -28,7 +28,7 @@ public class ObsScanner {
 		CSVWriter writer;
 		try {
 			writer = new CSVWriter(new FileWriter(OUTFILE), ',',CSVWriter.NO_QUOTE_CHARACTER);
-		    String[] conceptcols = ck.conceptNameMap.values().toArray(new String[ck.conceptNameMap.size()]);
+		    String[] conceptcols = ck.conceptMap.keySet().toArray(new String[ck.conceptMap.size()]);
 		    String[] firstcols = new String[]{"encounter_id","person_id"};
 		    String[] headers = concat(firstcols,conceptcols);		    
 			writer.writeNext(headers);
@@ -141,7 +141,7 @@ public class ObsScanner {
 	 	
 	
 	public static void main(String[] args){
-		ConceptKeeper ck = new ConceptKeeper("/Users/dgreis/Documents/School/Classes/FP_Aux/testdatapih");
+		ConceptKeeper ck = new ConceptKeeper();
 		ObsScanner ob = new ObsScanner();		
 		ob.flattenObsTable(ck,"/Users/dgreis/Documents/School/Classes/FP_Aux/testdatapih/obs_SMALL.csv","/Users/dgreis/Documents/School/Classes/FP_Aux/testdatapih/flattened.csv");
 	}

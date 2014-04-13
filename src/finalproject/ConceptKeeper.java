@@ -14,23 +14,27 @@ import au.com.bytecode.opencsv.CSVWriter;
 
 public class ConceptKeeper {
 	
-	public LinkedHashMap<Integer,String> conceptNameMap;
-	public HashMap<Integer,Integer> conceptOrderMap;
-	private final HashMap<String,Boolean> classMap = new HashMap<String,Boolean>();
+	//public LinkedHashMap<Integer,String> conceptNameMap;
+	public HashMap<Integer,Integer> conceptOrderMap = new HashMap<Integer,Integer>();
+	public final HashMap<String,Boolean> conceptMap = new HashMap<String,Boolean>();
 	
 	
 	
-	public ConceptKeeper(String path){
-		this.classMap.put("1", true);
-		this.classMap.put("4", true);
-		
-		this.conceptNameMap = new LinkedHashMap<Integer,String>();
-		this.conceptOrderMap = new HashMap<Integer,Integer>(); 
-		populateMaps(path);
+	public ConceptKeeper(){
+		String[] CONCEPTS = {"6542","6543","6669","6670"};
+		int counter = 0;
+		for (String s : CONCEPTS){
+			this.conceptMap.put(s, true);
+			this.conceptOrderMap.put(Integer.parseInt(s), counter);
+		}
+
+		//this.conceptNameMap = new LinkedHashMap<Integer,String>();
+		//this.conceptOrderMap = new HashMap<Integer,Integer>(); 
+		//populateMaps(path);
 		
 	}
 	
-	private void populateMaps(String targetdir){
+/*	private void populateMaps(String targetdir){
 		CSVReader reader;
 		try {
 			merge(targetdir+"/concept.csv",targetdir+"/concept_name.csv","concept_id","concept_id",targetdir+"/TESTOUT.csv");
@@ -138,6 +142,7 @@ public class ConceptKeeper {
 	{
 		System.out.println(s);
 	}
+*/
 	
 	public static void main(String[] args){
 		//ConceptKeeper ck = new ConceptKeeper("");

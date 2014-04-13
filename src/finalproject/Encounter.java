@@ -51,7 +51,7 @@ public class Encounter {
 	
 	private void populateMaps(){
 		scanObs(elines);
-		validateValueFields();
+		//validateValueFields();
 	}
 	
 	private void scanObs(ArrayList<String[]> obs){
@@ -88,7 +88,7 @@ public class Encounter {
 			}
 		}
 	}
-	
+/*	
 	private void validateValueFields(){
 	    for (int k : conceptValueMap.keySet()){
 	    	int size = conceptValueMap.get(k).size();
@@ -98,7 +98,7 @@ public class Encounter {
 	    	}
 	    }
 	}
-	
+*/	
 	
 	private String aggregate(Integer concept_id, Command command){
 		ArrayList<Integer> indices = conceptIndexMap.get(concept_id);
