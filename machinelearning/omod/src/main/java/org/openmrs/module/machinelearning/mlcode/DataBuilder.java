@@ -13,7 +13,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.*;
 
-
 import weka.core.Attribute;
 
 
@@ -105,7 +104,7 @@ public class DataBuilder {
 		//given value of a categorical variable, checks whether it currently exists in catVarCodeMap. If not, adds it and encodes the value.
 	}
 	
-	private void populateMaps(String path){	 //TODO: HANDLE EXTRA LINES AT END OF FILE
+	public void populateMaps(String path){	 //TODO: HANDLE EXTRA LINES AT END OF FILE
 		//makes pass through entire file, executes catVarCodeMapUpdater for each categorical variable on each line
 		//parses all free text fields using freeTextParser, feeds results to DictKeeper
 		//this method will know which fields are numeric/free-text/categorical by looking it up the dataMap
@@ -255,9 +254,9 @@ public class DataBuilder {
 		//writes feature vector to a csv file. Should be used to output data.
 	}
 	
-	public void saveDataMap(){
+	public void saveDataMap(String path){
 		try{
-			FileOutputStream fileOut = new FileOutputStream("dummydata/dummodel/datamap.ser");
+			FileOutputStream fileOut = new FileOutputStream(path+"datamap.ser");
 		    ObjectOutputStream out = new ObjectOutputStream(fileOut);
 		    out.writeObject(this.dataMap);
 		    out.close();
@@ -271,9 +270,9 @@ public class DataBuilder {
 		}
 	}
 	
-	public void saveReverVarMap(){
+	public void saveReverVarMap(String path){
 		try{
-			FileOutputStream fileOut = new FileOutputStream("dummydata/dummodel/revervarmap.ser");
+			FileOutputStream fileOut = new FileOutputStream(path+"revervarmap.ser");
 		    ObjectOutputStream out = new ObjectOutputStream(fileOut);
 		    out.writeObject(this.reverVarMap);
 		    out.close();
@@ -287,14 +286,15 @@ public class DataBuilder {
 		}
 	}
 	
-	public void saveCatVarCodeMap(){
+	public void saveCatVarCodeMap(String path){
 		try{
-			FileOutputStream fileOut = new FileOutputStream("dummydata/dummodel/catvarcodemap.ser");
+			
+			FileOutputStream fileOut = new FileOutputStream(path+"catvarcodemap.ser");
 		    ObjectOutputStream out = new ObjectOutputStream(fileOut);
 		    out.writeObject(this.catVarCodeMap);
 		    out.close();
 		    fileOut.close();
-		    System.out.println("Serialized data is saved in dummydata/dummodel/catvarcodemap.ser");
+		    System.out.println("Serialized data is saved in "+path);
 			} 
 			catch (FileNotFoundException e) {
 				e.printStackTrace();
@@ -385,12 +385,13 @@ public class DataBuilder {
 		db.addToDataMap(6, "BLOOD_PRESSURE", "NUMER");*/
 		
 		//IRISTEST
+		/*
 		db.addToDataMap(0, "Sepal.Length", "NUMER");
 		db.addToDataMap(1, "Sepal.Width", "NUMER");
 		db.addToDataMap(2, "Petal.Length", "NUMER");
 		db.addToDataMap(3,"Petal.Width","NUMER");
 		db.addToDataMap(4,"Species","CATEG");
-		
+		*/
 	
 			
 		
@@ -427,10 +428,11 @@ public class DataBuilder {
 		*
 		Three different files to be output
 		 */
-		db.saveCatVarCodeMap();
-		db.saveDataMap();
-		db.saveReverVarMap();
-		db.dictKeeper.saveDict();
+		
+		db.saveCatVarCodeMap("");
+		db.saveDataMap("");
+		db.saveReverVarMap("");
+		db.dictKeeper.saveDict("");
 	
 	
 

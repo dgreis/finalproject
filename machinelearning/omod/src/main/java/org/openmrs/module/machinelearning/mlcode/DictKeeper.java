@@ -39,7 +39,7 @@ public class DictKeeper {
 		return dict;
 	}
 	
-	public void saveDict(){
+	public void saveDict(String path){
 		try {
 		LinkedHashMap<String, MutableDouble> map = this.dict;
 		if (map == null){
@@ -50,7 +50,7 @@ public class DictKeeper {
 		for (String key : map.keySet()) {
 			map.put(key, new MutableDouble(0.0) );
 		}
-		FileOutputStream fileOut = new FileOutputStream("dummydata/dummodel/dict.ser");
+		FileOutputStream fileOut = new FileOutputStream(path+"dict.ser");
 	    ObjectOutputStream out = new ObjectOutputStream(fileOut);
 	    out.writeObject(map);
 	    out.close();

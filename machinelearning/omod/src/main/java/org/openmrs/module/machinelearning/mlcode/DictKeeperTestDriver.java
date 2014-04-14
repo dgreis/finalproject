@@ -41,7 +41,7 @@ public class DictKeeperTestDriver {
         for (double d : fv) {
             System.out.println(d);
         }
-        dk2.saveDict();
+        dk2.saveDict("");
         
         System.out.println("Make new DictKeeper, load serialized dict, and make a feature vector according to the loaded dict");
         DictKeeper dk3 = new DictKeeper();
