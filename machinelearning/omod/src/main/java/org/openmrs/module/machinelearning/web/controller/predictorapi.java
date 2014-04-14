@@ -126,13 +126,22 @@ public class  predictorapi
 		try 
 		{
 			
-			obj.put("Petal.Length", "2");
+			/*obj.put("Petal.Length", "2");
 			obj.put("Sepal.Length", "3");
 			obj.put("Petal.Width", "5");
 			obj.put("Sepal.Width", "7.5");
 			
 			
-			obj.put("Species",param);
+			obj.put("Species",param);*/
+			
+			//obj.put("encounter_id","177194");
+			//obj.put("person_id","1423");
+			obj.put("6670","B86");
+			obj.put("6669","david");
+			obj.put("6543","ab");
+			
+			//obj.put("6669","177194");
+			obj.put("6542",param);
 			
 			
 		} catch (JSONException e) 

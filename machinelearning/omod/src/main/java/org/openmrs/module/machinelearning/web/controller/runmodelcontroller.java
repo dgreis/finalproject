@@ -25,9 +25,10 @@ import au.com.bytecode.opencsv.CSVReader;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-
 import java.io.IOException;
 import java.util.List;
+
+
 
 //import weka.classifiers.Classifier;
 import weka.core.converters.ConverterUtils.DataSource;
@@ -48,10 +49,29 @@ public class  runmodelcontroller {
 	@RequestMapping(value = "/module/machinelearning/runmodel", method = RequestMethod.GET)
 	public void runmodel(ModelMap model) 
 	{	
-		String testfile =  "dummydata/iris.csv";
-		ModelTrainer m = new ModelTrainer();
-		Instances data = m.readData(testfile);
+		String path = this.getClass().getClassLoader().getResource("").getPath();
+		String fullqualpath = path.split("target")[0];
+		
+		String modelDir = path;
+		String flatFile =  fullqualpath+"structure_TESTOUT.csv";
+		
+		
+		ModelTrainer m = new ModelTrainer();	
+		Instances data = m.prepData(flatFile,modelDir);
+		
 		NaiveBayes nb = new NaiveBayes();
+		try {
+			nb.buildClassifier(data);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			weka.core.SerializationHelper.write(modelDir + "/cls.ser", nb);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
 		
 		model.addAttribute("user", Context.getAuthenticatedUser());
 		

@@ -71,12 +71,12 @@ public class  structuredata {
 		db.addToDataMap(4,"Species","CATEG");
 		*/
 		
-		db.addToDataMap(0,"encounter_id","NUMER");
-		db.addToDataMap(0,"person_id","NUMER");
-		db.addToDataMap(0,"6670","FREE_TEXT");
-		db.addToDataMap(0,"6543","FREE_TEXT");
-		db.addToDataMap(0,"6542","CATEG");
-		db.addToDataMap(0,"6669","CATEG");
+		//db.addToDataMap(0,"encounter_id","CATEG");
+		//db.addToDataMap(0,"person_id","CATEG");
+		db.addToDataMap(2,"6670","FREE_TEXT");
+		db.addToDataMap(3,"6543","FREE_TEXT");
+		db.addToDataMap(4,"6542","CATEG");
+		db.addToDataMap(5,"6669","CATEG");
 			
 		//STEP TWO: POPULATE MAPS (1st pass through the data)		
 		db.populateMaps(INPUT);
