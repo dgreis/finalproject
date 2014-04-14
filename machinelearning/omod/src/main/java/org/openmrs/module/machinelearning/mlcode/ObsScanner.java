@@ -29,9 +29,10 @@ public class ObsScanner {
 		CSVWriter writer;
 		try {
 			writer = new CSVWriter(new FileWriter(OUTFILE), ',',CSVWriter.NO_QUOTE_CHARACTER);
-		    String[] conceptcols = ck.conceptMap.keySet().toArray(new String[ck.conceptMap.size()]);
-		    String[] firstcols = new String[]{"encounter_id","person_id"};
-		    String[] headers = concat(firstcols,conceptcols);		    
+		    //String[] conceptcols = ck.conceptMap.keySet().toArray(new String[ck.conceptMap.size()]);
+		    //String[] firstcols = new String[]{"encounter_id","person_id"};
+		    //String[] headers = concat(firstcols,conceptcols);	
+		    String[] headers = ck.conceptMap.keySet().toArray(new String[ck.conceptMap.size()]);
 			writer.writeNext(headers);
 			reader = new CSVReader(new FileReader(INFILE));
 			String [] nextLine;
@@ -45,9 +46,10 @@ public class ObsScanner {
 				}
 				else{
 					Encounter e = new Encounter(encounter_group, ck);
-					String[] firstvals = new String[]{Integer.toString(e.getEncounter_ID()),Integer.toString(e.getPerson_ID())};
-					String[] conceptvals = e.flattenEncounter();
-					String[] toWrite = concat(firstvals,conceptvals);
+					//String[] firstvals = new String[]{Integer.toString(e.getEncounter_ID()),Integer.toString(e.getPerson_ID())};
+					//String[] conceptvals = e.flattenEncounter();
+					//String[] toWrite = concat(firstvals,conceptvals);
+					String[] toWrite = e.flattenEncounter();
 					writer.writeNext(toWrite);
 				}
 			}

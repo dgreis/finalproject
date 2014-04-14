@@ -66,6 +66,8 @@ public class Predictor {
             String val;
 			try {
 				val = json.getString(key);
+				//System.out.println("\n\nkey:"+key+"\n\n\nDAVID:\n"+db.reverVarMap.entrySet().toString());
+				
 				if (db.reverVarMap.containsKey(key)){							//Is it free-text or not free-text
 	            	if (db.catVarCodeMap.containsKey(key)){						//Is it categorical or numeric?
 	            		double code = db.catVarCodeMap.get(key).get(val);

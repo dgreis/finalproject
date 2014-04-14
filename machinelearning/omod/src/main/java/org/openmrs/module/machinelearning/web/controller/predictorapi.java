@@ -137,11 +137,11 @@ public class  predictorapi
 			//obj.put("encounter_id","177194");
 			//obj.put("person_id","1423");
 			obj.put("6670","B86");
-			obj.put("6669","david");
-			obj.put("6543","ab");
+			obj.put("6669","i");
+			obj.put("6542","b");
 			
 			//obj.put("6669","177194");
-			obj.put("6542",param);
+			obj.put("6543",param);
 			
 			
 		} catch (JSONException e) 
