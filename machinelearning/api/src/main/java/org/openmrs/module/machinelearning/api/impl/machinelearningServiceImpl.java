@@ -65,4 +65,16 @@ public class machinelearningServiceImpl extends BaseOpenmrsService implements ma
 		
 	//	return null;
 	}
+	
+	public List<Object[]> getencounters()
+	{
+		return dao.getencounters();
+	}
+
+	@Override
+	public List<Object[]> getflatobs(List<Integer> encounterset){
+		// TODO Auto-generated method stub
+		return dao.getflatobs(encounterset);
+	}
+	
 }

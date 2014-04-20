@@ -194,7 +194,11 @@ private void createfilenotes(){
 }
 
 private void printoutput(List<Object[]> pr,CSVWriter writer) throws IOException{
+	
 	String[] singlerow = new String[pr.get(0).length];
+	System.out.println("watch");
+	try{
+		
 	
 	int i; // will go from zero to column length
 	for(Object[] p:pr)
@@ -218,10 +222,13 @@ private void printoutput(List<Object[]> pr,CSVWriter writer) throws IOException{
 	}
 	// flush output to disc
 	writer.flush();
+	}catch(Exception e){
+		e.printStackTrace();
+	}
 	
-	
-	System.out.println("batch process");
+//	System.out.println("batch process");
 }
+
 
 
 protected final Log log = LogFactory.getLog(getClass());
@@ -233,15 +240,76 @@ protected final Log log = LogFactory.getLog(getClass());
 		// dump obs table in batches of 50
 		try {
 			
+			CSVWriter writerenc = new CSVWriter(new FileWriter("encounters.csv"), ',',CSVWriter.NO_QUOTE_CHARACTER);
 			
 			CSVWriter writer = new CSVWriter(new FileWriter("obs_patients.csv"), ',',CSVWriter.NO_QUOTE_CHARACTER);
 			
 			System.out.println("----------current location---------123142141213");
 			System.out.println(this.getClass().getClassLoader().getResource("").getPath());
 		
+			List<Object[]> encounters = Context.getService(machinelearningService.class).getencounters();
+			
+			List<Integer> encounterids = new ArrayList<Integer>();
+			
+			for(Object[] x:encounters)
+			{
+				Integer y = (Integer)x[0];
+				encounterids.add(y);
+				System.out.println(y.intValue());			
+			}
+			
+			int cnt = encounterids.size();
+			System.out.println("size of encounters"+Integer.toString(cnt));
+		
+			int batchsize = 10;
+			List<Object[]> batchoutput;
+			
+			int flag = 0;
+			int currentcnt = 0;
+			
+			
+			
+		while(currentcnt < cnt)
+			{
+				if(flag==0)
+				{
+					
+					System.out.print("first batch");
+					System.out.println("current:"+Integer.toString(currentcnt)+"and"+Integer.toString(batchsize));
+					batchoutput = Context.getService(machinelearningService.class).getflatobs(encounterids.subList(currentcnt,batchsize));
+					flag = 1;
+					currentcnt = batchsize+1;
+					
+				}
+				else{
+					System.out.print("other batches");
+					System.out.println("current:"+Integer.toString(currentcnt)+"and"+Integer.toString(batchsize));
+					
+					if(currentcnt+batchsize >= cnt)
+					{
+						batchsize = cnt - currentcnt - 1;
+						System.out.println("corner case at work");
+						break;
+					} //corner case 
+					
+					batchoutput = Context.getService(machinelearningService.class).getflatobs(encounterids.subList(currentcnt,currentcnt+batchsize));
+					currentcnt = currentcnt + batchsize;
+				}
+		
+				if(batchoutput.size() > 0)
+				{
+					printoutput(batchoutput,writer);
+				}
+				
+				
+				
+			}
+			
+			
+			writer.close();
 		
 		
-		BigInteger count = Context.getService(machinelearningService.class).getobscount();
+		/*BigInteger count = Context.getService(machinelearningService.class).getobscount();
 		
 		double cnt = count.doubleValue();
 		
@@ -293,32 +361,14 @@ protected final Log log = LogFactory.getLog(getClass());
 		
 		//List<Patient> patients = Context.getPatientService().getAllPatients();
 		System.out.println("before query");
-	
-		
-		// link to api : http://resources.openmrs.org/doc/org/openmrs/api/ObsService.html
-		// obs output, find for these patients only
-		/*
-		List<Obs> someObsList = Context.getObsService().getObservations(people, null, null, null, null, null, null, null, null, null, null, true);
-		createfileobs(someObsList);
-  		*/
-		
-		/*
-		// creating concepts
-		List<Concept> concepts = Context.getConceptService().getAllConcepts();
-		createfileconcepts(concepts);
 		*/
-		
+			
 		List<Patient> temp = new ArrayList<Patient>();
 		
 		
 		model.addAttribute("favorites",temp);
 		
 		
-		// pass control to createip.jsp file passing the two values
-		
-        
- 		//model.addAttribute("obs",someObsList);
-
 		}
 		catch(Exception e){
 			e.printStackTrace();

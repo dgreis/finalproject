@@ -36,5 +36,10 @@ public interface machinelearningDAO {
 	
 	BigInteger getobscount();
 	
+	BigInteger getencountercount();
+	List<Object[]> getencounters();
+	
+	List<Object[]> getflatobs(List<Integer> encounterset);
+	
 	
 }

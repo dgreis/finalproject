@@ -46,4 +46,9 @@ public interface machinelearningService extends OpenmrsService {
 
 	BigInteger getobscount();
 	
+	
+	List<Object[]> getencounters();
+
+	List<Object[]> getflatobs(List<Integer> encounterset);
+	
 }
