@@ -392,6 +392,8 @@ public class DataBuilder {
 		db.addToDataMap(3,"Petal.Width","NUMER");
 		db.addToDataMap(4,"Species","CATEG");
 		*/
+		
+		db.addToDataMap(0, "6542", "CATEG");
 	
 			
 		

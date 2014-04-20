@@ -243,6 +243,10 @@ protected final Log log = LogFactory.getLog(getClass());
 			CSVWriter writerenc = new CSVWriter(new FileWriter("encounters.csv"), ',',CSVWriter.NO_QUOTE_CHARACTER);
 			
 			CSVWriter writer = new CSVWriter(new FileWriter("obs_patients.csv"), ',',CSVWriter.NO_QUOTE_CHARACTER);
+			String[] headers = {"6542","6543_voided"};
+			
+			
+			writer.writeNext(headers);
 			
 			System.out.println("----------current location---------123142141213");
 			System.out.println(this.getClass().getClassLoader().getResource("").getPath());
