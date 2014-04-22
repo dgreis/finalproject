@@ -28,7 +28,10 @@ public class Predictor {
 	}*/
 	
 	public Predictor(String modelFolder){
-		db = new DataBuilder(modelFolder);		
+		db = new DataBuilder(modelFolder);
+		try{
+		cls = (Classifier) weka.core.SerializationHelper.read(modelFolder+"/cls.ser");
+		}catch(Exception e){e.printStackTrace();}
 	}
 	
 	public DataBuilder getdb(){
@@ -66,7 +69,7 @@ public class Predictor {
             String val;
 			try {
 				val = json.getString(key);
-				//System.out.println("\n\nkey:"+key+"\n\n\nDAVID:\n"+db.reverVarMap.entrySet().toString());
+				System.out.println("\n\nkey:"+key+"\n\n\nDAVID:\n"+db.reverVarMap.entrySet().toString());
 				
 				if (db.reverVarMap.containsKey(key)){							//Is it free-text or not free-text
 	            	if (db.catVarCodeMap.containsKey(key)){						//Is it categorical or numeric?
@@ -111,19 +114,28 @@ public class Predictor {
 		 */
 		ArrayList<Attribute> atts = db.getAttributes();	
 		Instances insts = new Instances("toClas",atts,0);
-		insts.setClassIndex(insts.numAttributes() - 1);
+	//	insts.setClassIndex(insts.numAttributes() - 1);
+		insts.setClassIndex(0);
 		double[] featVec = makeFeatVector(json);
+		
 		Instance i = makeInstance(atts, featVec);		
 		insts.add(i);
 		try {
-			double predic = cls.classifyInstance(insts.instance(0));
+			Instance in = insts.instance(0);
+			System.out.println("instance rohan");
+			double predic = cls.classifyInstance(in);
+			
+			System.out.println("classify rohan");
 			System.out.println(predic + " -> " + insts.classAttribute().value((int) predic));
 			return predic;
-		} catch (Exception e) {
+		}
+		
+		catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 		return -999.99;	//This return value means something went wrong.
-	}
+	}	
 		
 	public static void main(String[] args){
 	}

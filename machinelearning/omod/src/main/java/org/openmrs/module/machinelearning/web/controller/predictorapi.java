@@ -126,23 +126,10 @@ public class  predictorapi
 		try 
 		{
 			
-			/*obj.put("Petal.Length", "2");
-			obj.put("Sepal.Length", "3");
-			obj.put("Petal.Width", "5");
-			obj.put("Sepal.Width", "7.5");
 			
-			
-			obj.put("Species",param);*/
-			
-			//obj.put("encounter_id","177194");
-			//obj.put("person_id","1423");
-			//obj.put("6670","B86");
-			//obj.put("6669","i");
-			obj.put("6542","1.0");
-			
-			//obj.put("6669","177194");
-			obj.put("6543",param);
-			
+			obj.put("6542","6704");
+			obj.put("6543_voided",param);
+						
 			
 		} catch (JSONException e) 
 		{
@@ -150,15 +137,17 @@ public class  predictorapi
 			e.printStackTrace();
 		}
 		
-		double[] dlist = p.makeFeatVector(obj);
+		//double[] dlist = p.makeFeatVector(obj);
 
-		
+		double[] dlist = new double[1];
 		// call predict function
-		/*
+		
 		double output = p.predict(obj);
+		dlist[0] = output;
 		System.out.println(output);
 		
-		String outputstr = Double.toString(output);*/
+		String outputstr = Double.toString(output);
+		
 		
 		// add prediction to 
 		//xyz.add(outputstr);

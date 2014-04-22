@@ -48,7 +48,7 @@ public class  structuredata {
 		String path = this.getClass().getClassLoader().getResource("").getPath();
 		String fullqualpath = path.split("target")[0];
 		
-		String INPUT = fullqualpath+"flatfile.csv";
+		String INPUT = fullqualpath+"obs_patients.csv";
 		DataBuilder db = new DataBuilder();
 		
 		
