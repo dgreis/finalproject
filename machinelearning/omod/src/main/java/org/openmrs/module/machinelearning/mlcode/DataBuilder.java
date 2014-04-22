@@ -160,10 +160,13 @@ public class DataBuilder {
 	
 	public ArrayList<Attribute> getAttributes(){	
 		Collection<String> keySet = this.reverVarMap.keySet();
+		System.out.println("\n\n\n\n\n\n DAVID LOOK HERE \n\n\n\n\n\n\n");
+		System.out.println(keySet);
 		ArrayList<Attribute> nonTextAtts = new ArrayList<Attribute>();
 		Iterator it = keySet.iterator();
 	    while (it.hasNext()) {
 	        String tok = (String)it.next();
+	        System.out.println("tok "+tok);
 	        if (catVarCodeMap.containsKey(tok)){
 //	        	System.out.println(catVarCodeMap.get(tok));
 	        	int ents = catVarCodeMap.get(tok).size();
@@ -174,6 +177,7 @@ public class DataBuilder {
 	        		String strVal = String.valueOf(label);
 	        		my_nominal_values.add(strVal);
 	        		label = label + 1.0;
+	        		System.out.println(label);
 	        	}
 	        	nonTextAtts.add(new Attribute(tok, my_nominal_values));       
 	        }

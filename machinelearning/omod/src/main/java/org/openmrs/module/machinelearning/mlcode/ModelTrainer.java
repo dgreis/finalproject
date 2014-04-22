@@ -15,7 +15,7 @@ import weka.core.Instances;
 import weka.core.Instance;
 import weka.classifiers.bayes.NaiveBayes;
 import weka.core.DenseInstance;
-
+ 
 
 public class ModelTrainer {
 	//This class takes a csv as input and outputs a serialized trained model.
@@ -45,7 +45,7 @@ public class ModelTrainer {
 		 reader.close();
 		 if (data.classIndex() == -1)
 		//	   data.setClassIndex(data.numAttributes() - 1);
-			 data.setClassIndex(4);
+			 data.setClassIndex(0);
 			 return data;
 		 
 		 }

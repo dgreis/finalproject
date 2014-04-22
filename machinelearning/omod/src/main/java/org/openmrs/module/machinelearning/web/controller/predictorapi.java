@@ -136,9 +136,9 @@ public class  predictorapi
 			
 			//obj.put("encounter_id","177194");
 			//obj.put("person_id","1423");
-			obj.put("6670","B86");
-			obj.put("6669","i");
-			obj.put("6542","b");
+			//obj.put("6670","B86");
+			//obj.put("6669","i");
+			obj.put("6542","1.0");
 			
 			//obj.put("6669","177194");
 			obj.put("6543",param);
