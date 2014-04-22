@@ -107,7 +107,7 @@ public class Predictor {
 		}
 	
 	
-	public double predict(JSONObject json){
+	public String predict(JSONObject json){
 		/*
 		 * This class can receive a json-like input. This can make sense of it using the deserialized data model
 		 * 
@@ -125,16 +125,33 @@ public class Predictor {
 			System.out.println("instance rohan");
 			double predic = cls.classifyInstance(in);
 			
+			// looking up catvarmap
+			HashMap<String,Double> catvar = db.catVarCodeMap.get("6542");
+			HashMap<Double,String> inversecatvar = new HashMap<Double,String>();
+			for(String key:catvar.keySet())
+			{
+				System.out.println(key+"and"+catvar.get(key));
+				inversecatvar.put(catvar.get(key), key);
+			}
+			
+			
+			String result = inversecatvar.get(Double.parseDouble(insts.classAttribute().value((int) predic)));
+			
+			
 			System.out.println("classify rohan");
 			System.out.println(predic + " -> " + insts.classAttribute().value((int) predic));
-			return predic;
+			//return predic;
+			
+			
+			
+			return result;
 		}
 		
 		catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		return -999.99;	//This return value means something went wrong.
+		return "-999.99";	//This return value means something went wrong.
 	}	
 		
 	public static void main(String[] args){

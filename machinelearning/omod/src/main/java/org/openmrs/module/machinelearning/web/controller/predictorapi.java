@@ -19,7 +19,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.api.context.Context;
@@ -30,10 +29,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 // important - controller does not need to go to view, return response from controller
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.openmrs.Concept;
 import org.openmrs.Patient;
 
 import java.util.List;
 import java.util.ArrayList;
+
+
 
 
 
@@ -49,6 +51,7 @@ import org.openmrs.module.machinelearning.*;
 import org.openmrs.module.machinelearning.mlcode.*;
 
 import java.util.HashMap;
+
 import org.openmrs.module.machinelearning.api.machinelearningService;
 
 
@@ -139,14 +142,18 @@ public class  predictorapi
 		
 		//double[] dlist = p.makeFeatVector(obj);
 
-		double[] dlist = new double[1];
+		List<String> dlist = new ArrayList<String>();
 		// call predict function
 		
-		double output = p.predict(obj);
-		dlist[0] = output;
+		String output = p.predict(obj);
+
+		Concept concept = Context.getConceptService().getConcept(Integer.parseInt(output));
+		dlist.add(concept.getName().getName());
+		
+		dlist.add(output);
 		System.out.println(output);
 		
-		String outputstr = Double.toString(output);
+	//	String outputstr = Double.toString(output);
 		
 		
 		// add prediction to 
@@ -163,12 +170,12 @@ public class  predictorapi
 		patients.add(info);
 
 		//return patients;
-		
+		/* 
 		for(double d:dlist){
 			xyz.add(Double.toString(d));
-		}
+		}*/
         
-        return xyz;
+        return dlist;
 	}
 }
 
