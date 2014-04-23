@@ -31,13 +31,20 @@ public class ModelTrainer {
 		 DataBuilder db = new DataBuilder(modelDir);
 		 ArrayList<Attribute> atts = db.getAttributes();
 		 Instances data = new Instances("train",atts,0);
+		
 		 int Inslength = atts.size();
-		 while ((nextLine = reader.readNext()) != null) {
+		 while ((nextLine = reader.readNext()) != null) 
+		 {
 			 Instance ins = new DenseInstance(Inslength);
 			 Iterator<Attribute> it = atts.iterator();
-			 for (String s : nextLine){
+			 for (String s : nextLine)
+			 {
 				 ins.setValue(it.next(), Double.parseDouble(s));
 			 }
+			 
+			 // add instances to training set <instances>
+			 data.add(ins);
+			 
 			 if (it.hasNext()){
 				 System.out.println("Something is wrong");
 			 }
@@ -46,6 +53,7 @@ public class ModelTrainer {
 		 if (data.classIndex() == -1)
 		//	   data.setClassIndex(data.numAttributes() - 1);
 			 data.setClassIndex(0);
+		 System.out.println("returning instances");
 			 return data;
 		 
 		 }

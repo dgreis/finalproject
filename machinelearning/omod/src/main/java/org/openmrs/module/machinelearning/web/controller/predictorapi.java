@@ -169,13 +169,14 @@ public class  predictorapi
 		patients.add("str");
 		patients.add(info);
 
+		
 		//return patients;
 		/* 
 		for(double d:dlist){
 			xyz.add(Double.toString(d));
 		}*/
         
-        return dlist;
+        return dlist;	
 	}
 }
 

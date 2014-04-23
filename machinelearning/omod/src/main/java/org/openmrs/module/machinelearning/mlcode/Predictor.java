@@ -125,6 +125,7 @@ public class Predictor {
 			System.out.println("instance rohan");
 			double predic = cls.classifyInstance(in);
 			
+			
 			// looking up catvarmap
 			HashMap<String,Double> catvar = db.catVarCodeMap.get("6542");
 			HashMap<Double,String> inversecatvar = new HashMap<Double,String>();
@@ -142,7 +143,12 @@ public class Predictor {
 			System.out.println(predic + " -> " + insts.classAttribute().value((int) predic));
 			//return predic;
 			
-			
+			double[] distr = cls.distributionForInstance(in);
+			for(double x:distr)
+			{
+				System.out.print(x);
+				System.out.print("\t");
+			}
 			
 			return result;
 		}

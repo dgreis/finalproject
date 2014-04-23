@@ -57,12 +57,14 @@ public class  runmodelcontroller {
 		
 		
 		ModelTrainer m = new ModelTrainer();	
+		
 		Instances data = m.prepData(flatFile,modelDir);
 		
 		NaiveBayes nb = new NaiveBayes();
 		try {
 			nb.buildClassifier(data);
-		} catch (Exception e) {
+		} catch (Exception e) 
+		{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
