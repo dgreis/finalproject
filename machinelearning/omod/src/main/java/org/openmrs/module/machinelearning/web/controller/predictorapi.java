@@ -32,8 +32,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.openmrs.Concept;
 import org.openmrs.Patient;
 
+import java.util.Date;
 import java.util.List;
 import java.util.ArrayList;
+import java.io.File;
+
 
 
 
@@ -122,6 +125,17 @@ public class  predictorapi
 			System.out.println(key+"and"+temp);
 		}
 		
+		File f = new File(this.getClass().getClassLoader().getResource("").getPath()+"/cls.ser");
+		int obsolete = 0;
+		//long predictorAge = new Date().getTime() - f.lastModified();
+		//if ( predictorAge <= 2)
+		//	obsolete = 1;
+
+		double predictorAgeMS = (new Date().getTime() - f.lastModified());
+		double predictorAge = predictorAgeMS/(1000*60*60*24);
+		if ( predictorAge >= 0.006) 		//flips on 'obsolete' switch if classifier is more than 10
+			obsolete = 1;					// minutes old.
+		
 		
 		Predictor p = new Predictor(this.getClass().getClassLoader().getResource("").getPath());
 		JSONObject obj = new JSONObject();
@@ -151,6 +165,7 @@ public class  predictorapi
 		dlist.add(concept.getName().getName());
 		
 		dlist.add(output);
+		dlist.add(Integer.toString(obsolete));
 		System.out.println(output);
 		
 	//	String outputstr = Double.toString(output);
