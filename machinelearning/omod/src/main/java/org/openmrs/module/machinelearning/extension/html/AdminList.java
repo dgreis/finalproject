@@ -46,6 +46,8 @@ public class AdminList extends AdministrationSectionExt {
 	public Map<String, String> getLinks() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<String, String>();
 		map.put("/module/machinelearning/manage.form", "machinelearning.manage");
+		map.put("/module/machinelearning/create.form", "machinelearning.create");
+		
 		map.put("/module/machinelearning/createip.form", "create input file");
 		//map.put("/module/machinelearning/flatten.form", "create flat file");
 		map.put("/module/machinelearning/structuredata.form", "strucure data");

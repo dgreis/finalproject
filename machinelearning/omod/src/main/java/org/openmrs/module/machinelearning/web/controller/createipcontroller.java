@@ -265,7 +265,7 @@ protected final Log log = LogFactory.getLog(getClass());
 			int cnt = encounterids.size();
 			System.out.println("size of encounters"+Integer.toString(cnt));
 		
-			int batchsize = 10;
+			int batchsize = 100;
 			List<Object[]> batchoutput;
 			
 			int flag = 0;

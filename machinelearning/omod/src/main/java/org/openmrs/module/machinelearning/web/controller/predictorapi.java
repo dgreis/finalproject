@@ -126,7 +126,7 @@ public class  predictorapi
 		}
 		
 		File f = new File(this.getClass().getClassLoader().getResource("").getPath()+"/cls.ser");
-		int obsolete = 0;
+		String obsolete = "";
 		//long predictorAge = new Date().getTime() - f.lastModified();
 		//if ( predictorAge <= 2)
 		//	obsolete = 1;
@@ -134,7 +134,7 @@ public class  predictorapi
 		double predictorAgeMS = (new Date().getTime() - f.lastModified());
 		double predictorAge = predictorAgeMS/(1000*60*60*24);
 		if ( predictorAge >= 0.006) 		//flips on 'obsolete' switch if classifier is more than 10
-			obsolete = 1;					// minutes old.
+			obsolete = "Your model is old. contact your adminstrator!";					// minutes old.
 		
 		
 		Predictor p = new Predictor(this.getClass().getClassLoader().getResource("").getPath());
@@ -162,10 +162,14 @@ public class  predictorapi
 		String output = p.predict(obj);
 
 		Concept concept = Context.getConceptService().getConcept(Integer.parseInt(output));
+		
+		// concept name / diagnosis
 		dlist.add(concept.getName().getName());
 		
+		// concept id
 		dlist.add(output);
-		dlist.add(Integer.toString(obsolete));
+		// model obsolete or not ?
+		dlist.add(obsolete);
 		System.out.println(output);
 		
 	//	String outputstr = Double.toString(output);
