@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: org.openmrs.module.machinelearning.api.machinelearningServiceTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 7.611 sec
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 8.538 sec

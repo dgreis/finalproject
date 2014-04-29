@@ -1,6 +1,7 @@
 package org.openmrs.module.machinelearning.mlcode;
 
 import au.com.bytecode.opencsv.CSVReader;
+
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -9,11 +10,13 @@ import java.util.Iterator;
 import java.util.List;
 
 
+
 //import weka.classifiers.Classifier;
 import weka.core.Attribute;
 import weka.core.Instances;
 import weka.core.Instance;
 import weka.classifiers.bayes.NaiveBayes;
+import weka.classifiers.functions.Logistic;
 import weka.core.DenseInstance;
  
 
@@ -82,15 +85,15 @@ public static void main(String[] args){
 	ModelTrainer m = new ModelTrainer();	
 	Instances data = m.prepData(flatFile,modelDir);
 	
-	NaiveBayes nb = new NaiveBayes();
+	Logistic cls = new Logistic();
 	try {
-		nb.buildClassifier(data);
+		cls.buildClassifier(data);
 	} catch (Exception e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
 	try {
-		weka.core.SerializationHelper.write(modelDir + "/cls.ser", nb);
+		weka.core.SerializationHelper.write(modelDir + "/cls.ser", cls);
 	} catch (Exception e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
