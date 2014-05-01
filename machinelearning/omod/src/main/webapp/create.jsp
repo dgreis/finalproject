@@ -2,27 +2,94 @@
 <%@ include file="/WEB-INF/template/header.jsp"%>
 <head>
 
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+ <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+  <style>
+  
+</style>
 </head>
 <%@ include file="template/localHeader.jsp"%>
 
-<p>Hello ${user.systemId}!</p>
+
+<div id="tabs">
+  <ul>
+    <li><a href="#tabs-1">Create & Data File</a></li>
+    <li><a href="#tabs-2">Run Model</a></li>
+    
+  </ul>
+  <div id="tabs-1">
+    <p>Hello ${user.systemId}!</p>
 <form id ="create" method="get" action="">
 <p> This module would create the input file. Run the structure data module followed by this module </p>
 <input type="submit" value="startprocess">
 </form>
+  </div>
+  <div id="tabs-2">
+    <p>Tab 2</p>
+    <form id ="runmodel" method="get" action="">
+    <input type="submit" value="startprocess">
+    </form>
+  </div>
+ 
+</div>
 
 
+
+
+<script>
+$j(document).ready(function(){
+	var a = $j("<div>"+""+"</div>");
+    a.attr("id","dialog-message");
+    
+    $j( "body" ).append(a);
+   
+    
+    
+	console.log("ready");
+	
+	// enable tabs
+	$(function() {
+	    $( "#tabs" ).tabs();
+	  });
+});
+</script>
 <script> 
 $j('#create').submit(function (event){
+	 $j("#dialog-message").html("<img src=http://www.removeandrecycle.co.uk/images/loading83.gif>");
+	 
+	$( "#dialog-message" ).dialog({
+	      modal: true,
+	      buttons: {
+	        Ok: function() {
+	        	
+	        	console.log("ok clicked");
+	          $( this ).dialog( "close" );
+	        }
+	      }
+	    });
 	event.preventDefault();
 	console.log("creating data file");	
 	
 	$j.ajax({
         url: "http://localhost:8080/openmrs/module/machinelearning/createip.form",
         data: {},
-        success: function(data){
-        	console.log(data);
-        	alert("input file created");
+        success: function(data)
+        {
+        	 $j("#dialog-message").html("Done, move to the next step of the process");
+        	 $( "#tabs" ).tabs( "option", "active", 1 );
+        	 console.log("step 1");
+        	 
+        	 $j.ajax({
+        		
+        	      url: "http://localhost:8080/openmrs/module/machinelearning/structuredata.form",
+        	      data: {},
+        	      success: function(data)
+        	      {
+        	      		console.log("step 2");
+        	      }
+   	      		});
+        	      		        	              	
         },
         dataType: "html",
         timeout: 200000,
@@ -36,4 +103,31 @@ $j('#create').submit(function (event){
 	console.log("submit called");
 });
 </script>
+
+<script>
+$j('#runmodel').submit(function (event)
+{
+  event.preventDefault();
+  console.log("run");	
+  
+  $j.ajax({
+      url: "http://localhost:8080/openmrs/module/machinelearning/runmodel.form",
+      data: {},
+      success: function(data)
+      {
+      		console.log("step3");
+      		
+      		
+      
+      }
+      });
+  
+  
+	
+});
+
+</script>
+
+
+
 <%@ include file="/WEB-INF/template/footer.jsp"%>
