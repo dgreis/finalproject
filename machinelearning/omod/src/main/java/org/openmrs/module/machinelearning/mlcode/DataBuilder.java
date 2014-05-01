@@ -98,7 +98,7 @@ public class DataBuilder {
 					catVarCodeMap.get(VarName).put(value, addTo);
 				}
 				else{
-					catVarCodeMap.get(VarName).put(value, 1.0);
+					catVarCodeMap.get(VarName).put(value, 0.0);
 				}
 			}
 		//given value of a categorical variable, checks whether it currently exists in catVarCodeMap. If not, adds it and encodes the value.
@@ -171,7 +171,7 @@ public class DataBuilder {
 //	        	System.out.println(catVarCodeMap.get(tok));
 	        	int ents = catVarCodeMap.get(tok).size();
 	        	List my_nominal_values = new ArrayList(ents); 
-	        	double label = 1.0;
+	        	double label = 0.0;
 	        	for( int i = 0 ; i < ents ; i++ )
 	            {
 	        		String strVal = String.valueOf(label);
