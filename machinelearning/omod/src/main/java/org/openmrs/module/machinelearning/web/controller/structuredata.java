@@ -44,54 +44,35 @@ public class  structuredata {
 		/*
 		 **STEP ONE: INITIALIZE dataMaps
 		 */
-		
-		String path = this.getClass().getClassLoader().getResource("").getPath();
-		String fullqualpath = path.split("target")[0];
-		
-		String INPUT = fullqualpath+"obs_patients.csv";
-		DataBuilder db = new DataBuilder();
-		
-		
-		//DUMMYTEST
-		/*
-		db.addToDataMap(0, "SEX", "CATEG");
-		db.addToDataMap(1, "AGE", "NUMER");
-		//db.addToDataMap(2, "UNCODED_DIAGNOSIS", "CATEG");
-		db.addToDataMap(3, "ACTUAL_DIAGNOSIS", "CATEG");
-		//db.addToDataMap("4", "FREETEXT", "CATEG");
-		//db.addToDataMap("5", "MOREFREETEXT", "CATEG");
-		db.addToDataMap(6, "BLOOD_PRESSURE", "NUMER");*/
-		
-		//IRISTEST
-		/*
-		db.addToDataMap(0, "Sepal.Length", "NUMER");
-		db.addToDataMap(1, "Sepal.Width", "NUMER");
-		db.addToDataMap(2, "Petal.Length", "NUMER");
-		db.addToDataMap(3,"Petal.Width","NUMER");
-		db.addToDataMap(4,"Species","CATEG");
-		*/
-		
-		//db.addToDataMap(0,"encounter_id","CATEG");
-		//db.addToDataMap(0,"person_id","CATEG");
-		//db.addToDataMap(2,"6670","FREE_TEXT");
-		//db.addToDataMap(3,"6543","FREE_TEXT");
-		db.addToDataMap(0,"6542","CATEG");
-		//db.addToDataMap(3,"6669","CATEG");
-			
-		//STEP TWO: POPULATE MAPS (1st pass through the data)		
-		db.populateMaps(INPUT);
-	
-		//STEP THREE: WRITE DATA (2nd pass through the data)
+		DataBuilder db;
 		CSVReader reader;
 		CSVWriter writer;
-		try {
+		
+		try {		
+			String path = this.getClass().getClassLoader().getResource("").getPath();
+			String fullqualpath = path.split("target")[0];
+			
+			String INPUT = fullqualpath+"obs_patients.csv";
+			db = new DataBuilder();
+			
+	
+			db.addToDataMap(0,"6542","CATEG");
+			//db.addToDataMap(3,"6669","CATEG");
+				
+			//STEP TWO: POPULATE MAPS (1st pass through the data)		
+			db.populateMaps(INPUT);
+		
+			//STEP THREE: WRITE DATA (2nd pass through the data)
+			
+
 			writer = new CSVWriter(new FileWriter("structure_TESTOUT.csv"), ',', CSVWriter.NO_QUOTE_CHARACTER);
 		    String[] headers = db.getHeaders(); 
 			writer.writeNext(headers);
 			reader = new CSVReader(new FileReader(INPUT));
 			String [] nextLine;
 			reader.readNext();
-			while ((nextLine = reader.readNext()) != null) {
+			while ((nextLine = reader.readNext()) != null) 
+			{
 				double[] toWrite = db.makeFeatVector(nextLine);
 				String[] s = new String[toWrite.length];
 				for (int i = 0; i < s.length; i++)
@@ -100,9 +81,8 @@ public class  structuredata {
 			}
 			writer.close();
 			reader.close();	
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
+		
+			
 
 
 		
@@ -116,8 +96,22 @@ public class  structuredata {
 		db.saveReverVarMap(path);
 		db.dictKeeper.saveDict(path);
 	
-	
-		
+		} 
+		catch (IOException e1) 
+		{
+			e1.printStackTrace();
+		}
+
+		finally 
+		{
+			// nullify all objects that are created
+			db = null;
+			reader = null;
+			writer = null;
+			// garbage collection
+			System.gc();
+			
+		}
 		
 		model.addAttribute("user", Context.getAuthenticatedUser());
 	}

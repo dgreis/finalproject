@@ -59,12 +59,13 @@ public class DataBuilder {
 		return null;
 	}*/
 	
-	public String[] getHeaders(){
+	public String[] getHeaders()
+	{
 		String[] nftHeaders = reverVarMap.keySet().toArray(new String[reverVarMap.size()]);
 		String[] texHeaders = dictKeeper.getDict().keySet().toArray(new String[dictKeeper.getDict().size()]);
 		String[] Headers = concat(nftHeaders,texHeaders);
 		return Headers;			
-		}
+	}
 
 	
 	
@@ -108,8 +109,10 @@ public class DataBuilder {
 		//makes pass through entire file, executes catVarCodeMapUpdater for each categorical variable on each line
 		//parses all free text fields using freeTextParser, feeds results to DictKeeper
 		//this method will know which fields are numeric/free-text/categorical by looking it up the dataMap
+		CSVReader reader;
+		
 		try {
-			CSVReader reader = new CSVReader(new FileReader(path));
+			reader = new CSVReader(new FileReader(path));
 			List<String> parsedText = new ArrayList<String>();
 			String [] nextLine;
 			String[] headers = reader.readNext();
@@ -138,10 +141,17 @@ public class DataBuilder {
 		dictKeeper.addToDict(parsedText);
 		reader.close();
 		}
-		catch (FileNotFoundException e) {
+		catch (FileNotFoundException e) 
+		{
 			e.printStackTrace();
-		} catch (IOException e) {
+		} catch (IOException e) 
+		{
 			e.printStackTrace();
+		}
+		finally {
+			reader = null;
+			System.gc();
+			
 		}
 		
 	}

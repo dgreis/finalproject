@@ -51,6 +51,9 @@ $j(document).ready(function(){
 	// enable tabs
 	$(function() {
 	    $( "#tabs" ).tabs();
+	    // disable the second tab
+	    $( "#tabs" ).tabs( { disabled: [1] } );
+	    
 	  });
 });
 </script>
@@ -60,6 +63,8 @@ $j('#create').submit(function (event){
 	 
 	$( "#dialog-message" ).dialog({
 	      modal: true,
+	      height:"auto",
+	      width:"auto",
 	      buttons: {
 	        Ok: function() {
 	        	
@@ -87,6 +92,7 @@ $j('#create').submit(function (event){
         	      success: function(data)
         	      {
         	      		console.log("step 2");
+        	      		$( "#tabs" ).tabs("enable",1);
         	      }
    	      		});
         	      		        	              	

@@ -222,6 +222,7 @@ private void printoutput(List<Object[]> pr,CSVWriter writer) throws IOException{
 	}
 	// flush output to disc
 	writer.flush();
+	
 	}catch(Exception e){
 		e.printStackTrace();
 	}
@@ -238,11 +239,15 @@ protected final Log log = LogFactory.getLog(getClass());
 	{
 	
 		// dump obs table in batches of 50
+		CSVWriter writerenc;
+		CSVWriter writer;
+		
 		try {
 			
-			CSVWriter writerenc = new CSVWriter(new FileWriter("encounters.csv"), ',',CSVWriter.NO_QUOTE_CHARACTER);
+			writerenc = new CSVWriter(new FileWriter("encounters.csv"), ',',CSVWriter.NO_QUOTE_CHARACTER);
 			
-			CSVWriter writer = new CSVWriter(new FileWriter("obs_patients.csv"), ',',CSVWriter.NO_QUOTE_CHARACTER);
+			writer = new CSVWriter(new FileWriter("obs_patients.csv"), ',',CSVWriter.NO_QUOTE_CHARACTER);
+			
 			String[] headers = {"6542","6543_voided"};
 			
 			
@@ -255,14 +260,19 @@ protected final Log log = LogFactory.getLog(getClass());
 			
 			List<Integer> encounterids = new ArrayList<Integer>();
 			
-			for(Object[] x:encounters)
-			{
-				Integer y = (Integer)x[0];
-				encounterids.add(y);
-				System.out.println(y.intValue());			
-			}
+				for(Object[] x:encounters)
+				{
+					Integer y = (Integer)x[0];
+					encounterids.add(y);
+					System.out.println(y.intValue());			
+				}
 			
 			int cnt = encounterids.size();
+			
+			// garbage collection
+			encounters = null;
+			System.gc();
+			
 			System.out.println("size of encounters"+Integer.toString(cnt));
 		
 			int batchsize = 100;
@@ -310,62 +320,7 @@ protected final Log log = LogFactory.getLog(getClass());
 			}
 			
 			
-			writer.close();
-		
-		
-		/*BigInteger count = Context.getService(machinelearningService.class).getobscount();
-		
-		double cnt = count.doubleValue();
-		
-		long cntlong = (long) cnt;
-		
-		
-		//int cnt = count.intValue();
-		System.out.println("Count:"+count.toString());
-		
-		
-		
-		cnt = 1000L;
-		
-		int batchsize = 20;
-		List<Object[]> batchoutput;
-		
-		int flag = 0;
-		int currentcnt = 0;
-		
-		while(currentcnt < cnt)
-		{
-			if(flag==0)
-			{
-				batchoutput = Context.getService(machinelearningService.class).getpatienscustom(0,batchsize);
-				flag = 1;
-				currentcnt = 20;
-			}
-			else{
-				currentcnt = currentcnt + 20;
-				batchoutput = Context.getService(machinelearningService.class).getpatienscustom(currentcnt,batchsize);
-				
-			}
-			printoutput(batchoutput,writer);
-			
-			
-		}
-		
-		
 		writer.close();
-		
-		
-		System.out.println("custom service result");
-		
-		
-		
-		//sessionFactory.getCurrentSession()
-		model.put("me", Context.getAuthenticatedUser());
-				
-		
-		//List<Patient> patients = Context.getPatientService().getAllPatients();
-		System.out.println("before query");
-		*/
 			
 		List<Patient> temp = new ArrayList<Patient>();
 		
@@ -374,8 +329,15 @@ protected final Log log = LogFactory.getLog(getClass());
 		
 		
 		}
-		catch(Exception e){
+		catch(Exception e)
+		{
 			e.printStackTrace();
+			
+		}
+		finally{
+			writer = null;
+			writerenc = null;
+			System.gc();
 			
 		}
 
