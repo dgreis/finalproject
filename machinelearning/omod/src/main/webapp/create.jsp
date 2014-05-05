@@ -39,6 +39,8 @@
 
 <script>
 $j(document).ready(function(){
+	$j('h2').text("Diagknowzit Module Management")
+	
 	var a = $j("<div>"+""+"</div>");
     a.attr("id","dialog-message");
     
@@ -59,7 +61,7 @@ $j(document).ready(function(){
 </script>
 <script> 
 $j('#create').submit(function (event){
-	 $j("#dialog-message").html("<img src=http://www.removeandrecycle.co.uk/images/loading83.gif>");
+	 $j("#dialog-message").html("<img src=https://sunvalleyfilmfestival.org/ecommerce/img/animation_processing.gif>");
 	 
 	$( "#dialog-message" ).dialog({
 	      modal: true,
@@ -92,7 +94,10 @@ $j('#create').submit(function (event){
         	      success: function(data)
         	      {
         	      		console.log("step 2");
+        	      		// enable and switch
+        	      		
         	      		$( "#tabs" ).tabs("enable",1);
+        	      		$( "#tabs" ).tabs( "option", "active", 1 );
         	      }
    	      		});
         	      		        	              	

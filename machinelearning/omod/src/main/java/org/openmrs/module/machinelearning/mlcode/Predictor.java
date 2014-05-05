@@ -136,7 +136,7 @@ public class Predictor {
 			}
 			
 			
-			String result = inversecatvar.get(Double.parseDouble(insts.classAttribute().value((int) predic)));
+			
 			
 			
 			System.out.println("classify rohan");
@@ -144,13 +144,25 @@ public class Predictor {
 			//return predic;
 			
 			double[] distr = cls.distributionForInstance(in);
+			
+			String result;
+			//thresholding results
+			double probability = distr[(int) (predic)];
+			if(probability > .5)
+			{
+				result = inversecatvar.get(Double.parseDouble(insts.classAttribute().value((int) predic)));
+			}
+			else{
+				result = "-1000";
+			}
+			
 			for(double x:distr)
 			{
 				System.out.print(x);
 				System.out.print("\t");
 			}
 			
-			return result;
+			return result+","+Double.toString(probability);
 		}
 		
 		catch (Exception e) {

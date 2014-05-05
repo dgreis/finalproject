@@ -160,11 +160,25 @@ public class  predictorapi
 		// call predict function
 		
 		String output = p.predict(obj);
-
-		Concept concept = Context.getConceptService().getConcept(Integer.parseInt(output));
+		String[] op = output.split(",");
+		System.out.println("output"+op[0]+"and"+op[1]);
+		
+		if(op[0].equals("-1000"))
+		{
+			dlist.add("noprediction"); // confidence too low
+		//	dlist.add("lessthan50");
+		}
+		else
+		{
+			// lookup concept name based on concept id
+			Concept concept = Context.getConceptService().getConcept(Integer.parseInt(op[0]));
+			dlist.add(concept.getName().getName());
+			
+		}
+		dlist.add(op[1]);
 		
 		// concept name / diagnosis
-		dlist.add(concept.getName().getName());
+		
 		
 		// concept id
 		dlist.add(output);
