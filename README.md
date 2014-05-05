@@ -195,23 +195,23 @@ background-clip: border-box;
 /* background-image: -webkit-linear-gradient(top, rgb(255, 102, 102), rgb(255, 61, 61)); */
 background-origin: padding-box;
 background-size: auto;
-border-bottom-color: rgb(255, 61, 61);
-border-bottom-left-radius: 3px;
-border-bottom-right-radius: 3px;
-border-bottom-style: solid;
+/* border-bottom-color: rgb(255, 61, 61); */
+/* border-bottom-left-radius: 3px; */
+/* border-bottom-right-radius: 3px; */
+/* border-bottom-style: solid; */
 border-bottom-width: 1px;
 border-image-outset: 0px;
 border-image-repeat: stretch;
 border-image-slice: 100%;
 border-image-source: none;
 border-image-width: 1;
-border-left-color: rgb(255, 61, 61);
+/* border-left-color: rgb(255, 61, 61); */
 border-left-style: solid;
 border-left-width: 1px;
-border-right-color: rgb(255, 61, 61);
+/* border-right-color: rgb(255, 61, 61); */
 border-right-style: solid;
 border-right-width: 1px;
-border-top-color: rgb(255, 61, 61);
+/* border-top-color: rgb(255, 61, 61); */
 border-top-left-radius: 3px;
 border-top-right-radius: 3px;
 border-top-style: solid;
@@ -240,7 +240,7 @@ text-decoration: none solid rgb(255, 255, 255);
 text-indent: 0px;
 text-shadow: none;
 text-transform: none;
-width: 300px;
+width: 200px;
 word-spacing: 0px;
 writing-mode: lr-tb;
 background-color: #009384;
@@ -274,7 +274,7 @@ margin-top: 20px;
         
         
 
-<h2>Enter encounter information (required)</h2>
+<h2>Enter Encounter Information (REQUIRED)</h2>
     
 
 
@@ -299,18 +299,18 @@ margin-top: 20px;
       </table>
     
 
-      <h2>Add presumed or confirmed diagnosis (required):</h2>
+      <h2>Add Presumed or Confirmed Diagnosis (REQUIRED):</h2>
     
       <table class="who-when-where">
         <tr>
           <td>Diagnosis</td>
           <td>
-            <obs  conceptId="6542" style = "autocomplete" commentFieldLabel="Clinal Note" rows="2" cols="60"/>
+            <obs  conceptId="6542" style = "autocomplete" commentFieldLabel="Clinical Note" rows="2" cols="60"/>
 <br/>     
           </td>
           <td id="rohan">
 
-            Click here if you dont know
+             Click If You Don't Know Diagnosis
         
           </td>  
           </tr>
@@ -338,7 +338,7 @@ margin-top: 20px;
      var x = data.toString().split(",");
        console.log(x);
 
-          $j("#dialog-message").html("Did you actually mean: <br/>"+x[0]+" (confidence "+parseFloat(x[1].substr(0,6))*100+" % ). <br/> Do you wan to change your diagnosis ?");
+          $j("#dialog-message").html("Did you actually mean: <br/>"+"<br/>"+x[0]+"<br/>(Confidence: "+parseFloat(x[1].substr(0,6))*100+"%)"+"<br/>"+"<br/>Would you like to change your diagnosis ?");
         
           console.log(data);
         
@@ -362,7 +362,7 @@ margin-top: 20px;
         }
       });
 
-      $j("#ui-dialog-title-dialog-message").html("Diagnozit");
+      $j("#ui-dialog-title-dialog-message").html("Diagknowzit");
       
 
         }
