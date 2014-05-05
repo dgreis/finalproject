@@ -303,7 +303,7 @@ margin-top: 20px;
     
       <table class="who-when-where">
         <tr>
-          <td>Observation</td>
+          <td>Diagnosis</td>
           <td>
             <obs  conceptId="6542" style = "autocomplete" commentFieldLabel="Clinal Note" rows="2" cols="60"/>
 <br/>     
@@ -338,11 +338,14 @@ margin-top: 20px;
      var x = data.toString().split(",");
        console.log(x);
 
-          $j("#dialog-message").append(x[0]);
+          $j("#dialog-message").html("Did you actually mean: <br/>"+x[0]+" (confidence "+parseFloat(x[1].substr(0,6))*100+" % ). <br/> Do you wan to change your diagnosis ?");
         
           console.log(data);
-   
-          $j( "#dialog-message" ).dialog({
+        
+        if(x[0] != "noprediction"){
+
+         $j( "#dialog-message" ).dialog({
+        
         
         modal: true,
         height:"auto",
@@ -361,6 +364,9 @@ margin-top: 20px;
 
       $j("#ui-dialog-title-dialog-message").html("Diagnozit");
       
+
+        }
+         
       }
       </script>
 
@@ -382,6 +388,7 @@ margin-top: 20px;
       if($j( "#w9" ).val() != "")
       {
         var curselected = $j('#w8').val();
+
         if(curselected == "Other non-coded")
         {
 
