@@ -338,7 +338,7 @@ margin-top: 20px;
      var x = data.toString().split(",");
        console.log(x);
 
-          $j("#dialog-message").html("Did you actually mean: <br/>"+"<br/>"+x[0]+"<br/>(Confidence: "+parseFloat(x[1].substr(0,6))*100+"%)"+"<br/>"+"<br/>Would you like to change your diagnosis ?");
+          $j("#dialog-message").html("Did you actually mean: <br/>"+"<br/>"+x[0]+"<br/>(Confidence: "+parseFloat(x[1].substr(0,6))*100+"%)"+"<br/>"+"<br/>Would You Like to Change Your Diagnosis?");
         
           console.log(data);
         
