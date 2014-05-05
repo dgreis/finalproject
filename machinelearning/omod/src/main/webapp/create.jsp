@@ -14,21 +14,21 @@
 
 <div id="tabs">
   <ul>
-    <li><a href="#tabs-1">Create & Data File</a></li>
-    <li><a href="#tabs-2">Run Model</a></li>
+    <li><a href="#tabs-1">Compile Data</a></li>
+    <li><a href="#tabs-2">Train Model</a></li>
     
   </ul>
   <div id="tabs-1">
-    <p>Hello ${user.systemId}!</p>
+    <p>Hello ${user.systemId}! This wizard will install or update the prediction engine as needed.</p>
 <form id ="create" method="get" action="">
-<p> This module would create the input file. Run the structure data module followed by this module </p>
-<input type="submit" value="startprocess">
+<p>Click the button below to compile the data. The process will take a minute or two.</p>
+<input type="submit" value="Start">
 </form>
   </div>
   <div id="tabs-2">
-    <p>Tab 2</p>
+    <p>Click the button below to train the prediction engine. After it completes, you're good to go!</p>
     <form id ="runmodel" method="get" action="">
-    <input type="submit" value="startprocess">
+    <input type="submit" value="Start">
     </form>
   </div>
  
@@ -83,7 +83,7 @@ $j('#create').submit(function (event){
         data: {},
         success: function(data)
         {
-        	 $j("#dialog-message").html("Done, move to the next step of the process");
+        	 $j("#dialog-message").html("Process Completed.");
         	 $( "#tabs" ).tabs( "option", "active", 1 );
         	 console.log("step 1");
         	 
