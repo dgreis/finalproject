@@ -44,6 +44,8 @@ $j(document).ready(function(){
 	var a = $j("<div>"+""+"</div>");
     a.attr("id","dialog-message");
     
+    
+    
     $j( "body" ).append(a);
    
     
@@ -116,10 +118,90 @@ $j('#create').submit(function (event){
 </script>
 
 <script>
+function tryagain1()
+{
+	var delay=15000;//1 seconds
+    setTimeout(function(){
+    	$j.ajax({
+  	      url: "http://localhost:8080/openmrs/module/machinelearning/runmodel.form",
+  	      data: {},
+  	      success: function(data)
+  	      {
+  	      		console.log("recursive call");
+  	      		$j("#dialog-message").html("Process Completed.");
+  	      		//return;
+  	      },
+  	      error: function(objAJAXRequest, strError )
+  	      {
+  	        //	tryagain1();
+  	    	    //alert("i am in the error section");
+  	    	    $j("#dialog-message").html("Something went wrong with the building of the model. Please try again or contact the system administrator");
+  				console.log("trying again 1");
+  	    	    console.log(strError);
+  	      }
+  	      
+  	      });
+    //your code to be executed after 1 seconds
+    },delay); 
+	
+		
+	
+}
+
+</script>
+
+
+<script>
+function tryagain()
+{
+	var delay=15000;//15 second delay seconds
+    setTimeout(function(){
+    	$j.ajax({
+  	      url: "http://localhost:8080/openmrs/module/machinelearning/runmodel.form",
+  	      data: {},
+  	      success: function(data)
+  	      {
+  	      		console.log("recursive call");
+  	      		$j("#dialog-message").html("Process Completed.");
+  	      		return;
+  	      },
+  	      error: function(objAJAXRequest, strError )
+  	      {
+  	        	tryagain1();
+  	    	    //alert("i am in the error section");
+  				console.log("trying again");
+  	    	    console.log(strError);
+  	      }
+  	      
+  	      });
+    //your code to be executed after 1 seconds
+    },delay); 
+	
+		
+	
+}
+
+</script>
+
+<script>
 $j('#runmodel').submit(function (event)
 {
   event.preventDefault();
   console.log("run");	
+  $j("#dialog-message").html("<img src=https://sunvalleyfilmfestival.org/ecommerce/img/animation_processing.gif>");
+  
+  $( "#dialog-message" ).dialog({
+      modal: true,
+      height:"auto",
+      width:"auto",
+      buttons: {
+        Ok: function() {
+        	
+        	console.log("ok clicked");
+          $( this ).dialog( "close" );
+        }
+      }
+    });
   
   $j.ajax({
       url: "http://localhost:8080/openmrs/module/machinelearning/runmodel.form",
@@ -127,10 +209,16 @@ $j('#runmodel').submit(function (event)
       success: function(data)
       {
       		console.log("step3");
-      		
-      		
-      
+      		$j("#dialog-message").html("Process Completed.");
+      },
+      error: function(objAJAXRequest, strError )
+      {
+    	  console.log("failed first time , trying again");
+    	  tryagain();
+    	   
+			console.log(strError);
       }
+      
       });
   
   
