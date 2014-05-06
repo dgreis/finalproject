@@ -172,8 +172,8 @@ writing-mode: lr-tb;
 }
 
 input#w9 {
-width: 300px;
-height: 100px;
+width: 250px;
+
 }
 
 input#w8 {
@@ -301,18 +301,15 @@ margin-top: 20px;
 
       <h2>Add Presumed or Confirmed Diagnosis (REQUIRED):</h2>
     
+    <h3>If you dont know, enter other non-coded</h3>
       <table class="who-when-where">
         <tr>
           <td>Diagnosis</td>
           <td>
-            <obs  conceptId="6542" style = "autocomplete" commentFieldLabel="Clinical Note" rows="2" cols="60"/>
+            <obs  conceptId="6542" style = "autocomplete" commentFieldLabel="Clinical Note"/>
 <br/>     
           </td>
-          <td id="rohan">
-
-             Click If You Don't Know Diagnosis
-        
-          </td>  
+           
           </tr>
       
 
@@ -338,7 +335,7 @@ margin-top: 20px;
      var x = data.toString().split(",");
        console.log(x);
 
-          $j("#dialog-message").html("Did you actually mean: <br/>"+"<br/>"+x[0]+"<br/>(Confidence: "+parseFloat(x[1].substr(0,6))*100+"%)"+"<br/>"+"<br/>Would You Like to Change Your Diagnosis?");
+          $j("#dialog-message").html("Did you actually mean: <br/>"+"<br/>"+x[0]+"<br/>(Confidence: "+parseFloat(x[1].substr(0,6))*100+"%)"+"<br/>"+"<br/>Would you like to change your diagnosis ?"+"<br/>"+"<br/>"+x[4]);
         
           console.log(data);
         
@@ -392,8 +389,6 @@ margin-top: 20px;
         if(curselected == "Other non-coded")
         {
 
-
-
               $j.ajax({
                 url: "http://localhost:8080/openmrs/module/machinelearning/predictorapi.form",
                 data: {"class":$j( "#w9" ).val(),"url":window.location.href},
@@ -403,22 +398,18 @@ margin-top: 20px;
          }
        }
     });
+
+
+
+
+
+
+
+
    
   });
 
-    $j( "select" ).change(function () {
-      console.log("diagnosis selected");
-      var selectedval = $j('#w8 :selected').text();
-      if(selectedval == "Other non-coded")
-      {
-        console.log("whats wrong ?");
-        $j("#w9").focus();
-        $j("#w9").attr("placeholder","What's wrong with the patient?");
-
-      }
-
-
-    });
+   
    
       
    
@@ -438,8 +429,20 @@ $j("#w8").removeAttr("autocomplete");
 
  $j( "#w8" ).autocomplete({
 
-      source: val
+      source: val,
+      select: function(event,ui)
+      {
+        console.log("selected");
+        console.log(ui.item.value);
+        if(ui.item.value=="Other non-coded"){
+          
+
+          $j("#w9").attr("placeholder","What's wrong with the patient?");
+          $j("#w9").focus();
+        }
+      }
     });
+   
 
    </script>
 
