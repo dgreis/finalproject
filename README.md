@@ -313,7 +313,7 @@ padding-bottom: 10px;
     
 
       <h2>Add Presumed or Confirmed Diagnosis (REQUIRED):</h2>
-      <div id="look">** If you do not know the diagnosis, enter as "other noncoded" **</div>
+      <div id="look">** If You Do Not Know The Diagnosis, Enter as "Other non-coded" **</div>
     
       <table class="who-when-where">
         

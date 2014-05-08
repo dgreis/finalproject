@@ -29,25 +29,25 @@ margin-left: 960px;
 
 <div id="tabs">
   <ul>
-    <li><a href="#tabs-1">Compile Data</a></li>
-    <li><a href="#tabs-2">Train Model</a></li>
+    <li><a href="#tabs-1">Step One</a></li>
+    <li><a href="#tabs-2">Step Two</a></li>
     
   </ul>
   <div id="tabs-1">
     <p>Hello ${user.systemId}! This wizard will install or update the prediction engine as needed.</p>
 <form id ="create" method="get" action="">
-<p>Click the button below to compile the data. The process will take a minute or two.</p>
+<p>Click the 'Start' button below to begin. This step will create files needed in Step Two. The process will take a minute or two.</p>
 <input type="submit" value="Start">
 </form>
-<a id="infowindow1" href="#"  > Click here to read more</a>
+<a id="infowindow1" href="#"  > Click to learn more</a>
   </div>
   <div id="tabs-2">
-    <p>Click the button below to train the prediction engine. After it completes, you're good to go!</p>
+    <p>Click the button below to finish Diagknowzit's update/installation process. After it completes, you're good to go!</p>
     <form id ="runmodel" method="get" action="">
     <input type="submit" value="Start">
     </form>
     
-    <a id="infowindow2" href="#"  > Click here to read more</a>
+    <a id="infowindow2" href="#"  > Click to learn more</a>
   </div>
  
 </div>
@@ -71,8 +71,8 @@ $j(document).ready(function(){
     $j( "body" ).append(b);
     $j( "body" ).append(c);
     
-    $j("#dialog-message1").html("message 1");
-    $j("#dialog-message2").html("message 2");
+    $j("#dialog-message1").html("In this step, Diagnknowzit is pulling data<br>from the Open-MRS database and preparing it<br>to be read by the machine learning algorithm.");
+    $j("#dialog-message2").html("In this step, Diagknowzit is training the<br>machine learning algorithm on the data prepared<br>in Step One. Diagknowzit is powered by<br>multinomial logistic regression.");
     
     
    
