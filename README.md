@@ -246,12 +246,21 @@ writing-mode: lr-tb;
 background-color: #009384;
 margin-top: 20px;
 }
+
+div#error {
+padding-top: 10px;
+padding-bottom: 10px;
+}
     </style>
 
     <span style="float:right">Paper Form ID: $paperFormId</span>
 
-      <h2>Visit Note</h2>
-    
+      <h2>Visit Note</h2>       
+      <table>
+      <tr>
+      <td><div id="error" style="color:red"></div></td>
+      </tr>
+      </table>
       <table class="headerinfo" >
         <tr>
           <td>Name:</td>
@@ -276,7 +285,7 @@ margin-top: 20px;
 
 <h2>Enter Encounter Information (REQUIRED)</h2>
     
-
+     
 
     
       <table class="who-when-where">
@@ -300,9 +309,10 @@ margin-top: 20px;
     
 
       <h2>Add Presumed or Confirmed Diagnosis (REQUIRED):</h2>
+      ** If you do not know the diagnosis, enter as "other noncoded"
     
-    <h3>If you dont know, enter other non-coded</h3>
       <table class="who-when-where">
+        
         <tr>
           <td>Diagnosis</td>
           <td>
@@ -335,8 +345,10 @@ margin-top: 20px;
      var x = data.toString().split(",");
        console.log(x);
 
-          $j("#dialog-message").html("Did you actually mean: <br/>"+"<br/>"+x[0]+"<br/>(Confidence: "+parseFloat(x[1].substr(0,6))*100+"%)"+"<br/>"+"<br/>Would you like to change your diagnosis ?"+"<br/>"+"<br/>"+x[4]);
-        
+          $j("#dialog-message").html("Your Diagnosis is Currently : Other Non Coded <br/>"+"You entered :  "+$j('#w8').val()+"<br/>Prediction : "+x[0]+"<br/>(Probability : "+parseFloat(x[1].substr(0,4))*100+"%)"+"<br/>"+"<br/>Would You Like to Change Your Diagnosis ?"+"<br/>");
+
+          $j('#error').html(x[4]);
+          
           console.log(data);
         
         if(x[0] != "noprediction"){
