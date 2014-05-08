@@ -181,6 +181,10 @@ clear: none;
 margin-right: 50px;
 }
 
+#look{
+  color: blue;
+}
+
 #rohan {  
 -webkit-appearance: none;
 -webkit-background-clip: border-box;
@@ -309,7 +313,7 @@ padding-bottom: 10px;
     
 
       <h2>Add Presumed or Confirmed Diagnosis (REQUIRED):</h2>
-      ** If you do not know the diagnosis, enter as "other noncoded"
+      <div id="look">** If you do not know the diagnosis, enter as "other noncoded" **</div>
     
       <table class="who-when-where">
         
@@ -345,9 +349,13 @@ padding-bottom: 10px;
      var x = data.toString().split(",");
        console.log(x);
 
-          $j("#dialog-message").html("Your Diagnosis is Currently : Other Non Coded <br/>"+"You entered :  "+$j('#w8').val()+"<br/>Prediction : "+x[0]+"<br/>(Probability : "+parseFloat(x[1].substr(0,4))*100+"%)"+"<br/>"+"<br/>Would You Like to Change Your Diagnosis ?"+"<br/>");
+          $j("#dialog-message").html("Your Diagnosis is Currently : Other Non Coded <br/>"+"You entered :  "+$j('#w9').val()+"<br/>Prediction : "+x[0]+"<br/>(Probability : "+parseFloat(x[1].substr(0,4))*100+"%)"+"<br/>"+"<br/>Would You Like to Change Your Diagnosis ?"+"<br/>");
 
-          $j('#error').html(x[4]);
+          if(x[4]!=""){
+            //(x[4]);
+            $j('#error').html("Your Diagknowzit Model is Old. Contact Your System Administrator to Update it.");
+          }
+          
           
           console.log(data);
         
@@ -382,6 +390,8 @@ padding-bottom: 10px;
   <script>
 
   $j(document).ready(function() {
+
+    $j('.submitButton').attr("value","Submit");
 
     $j("#rohan").click(function(){
     $j('#w8').val("Other Noncoded");

@@ -12,6 +12,16 @@
 .ui-dialog-titlebar-close {
   visibility: hidden;
 } 
+
+a#infowindow1 
+{
+margin-left: 960px;
+}
+
+a#infowindow2 
+{
+margin-left: 960px;
+}
   
 </style>
 </head>
@@ -19,25 +29,25 @@
 
 <div id="tabs">
   <ul>
-    <li><a href="#tabs-1">Step 1</a></li>
-    <li><a href="#tabs-2">Step 2</a></li>
+    <li><a href="#tabs-1">Compile Data</a></li>
+    <li><a href="#tabs-2">Train Model</a></li>
     
   </ul>
   <div id="tabs-1">
     <p>Hello ${user.systemId}! This wizard will install or update the prediction engine as needed.</p>
 <form id ="create" method="get" action="">
-<p>Click the 'Start' button below to begin. This step will create files needed in step 2. The process will take a minute or two.</p>
+<p>Click the button below to compile the data. The process will take a minute or two.</p>
 <input type="submit" value="Start">
 </form>
-<a id="infowindow1" href="#"  > Click here to learn more</a>
+<a id="infowindow1" href="#"  > Click here to read more</a>
   </div>
   <div id="tabs-2">
-    <p>Click the button below to finish Diagknowzit's update/installation process. After it completes, you're good to go!</p>
+    <p>Click the button below to train the prediction engine. After it completes, you're good to go!</p>
     <form id ="runmodel" method="get" action="">
     <input type="submit" value="Start">
     </form>
     
-    <a id="infowindow2" href="#"  > Click here to learn more</a>
+    <a id="infowindow2" href="#"  > Click here to read more</a>
   </div>
  
 </div>
@@ -61,8 +71,10 @@ $j(document).ready(function(){
     $j( "body" ).append(b);
     $j( "body" ).append(c);
     
-    $j("#dialog-message1").html("In this step, Diagnknowzit is pulling data from the Open-MRS database and preparing it to be read by the machine learning algorithm.");
-    $j("#dialog-message2").html("In this step, Diagknowzit is training the machine learning algorithm on the data prepared in step one. Diagknowzit is powered by multinomial logistic regression.");
+    $j("#dialog-message1").html("message 1");
+    $j("#dialog-message2").html("message 2");
+    
+    
    
 	console.log("ready");
 	
@@ -91,13 +103,11 @@ $j(document).ready(function(){
 		        	
 		        	console.log("ok clicked");
 		          $( this ).dialog( "close" );
-		        },
-		        Cancel: function() {
-		            $( this ).dialog( "close" );
-		          }
+		        }
 		      }
 		    });
 		
+		 $j('#ui-id-3').html("Information");
 		console.log("click");
 	});
 	
@@ -117,14 +127,11 @@ $j(document).ready(function(){
 		        	
 		        	console.log("ok clicked");
 		          $( this ).dialog( "close" );
-		        },
-		        Cancel: function() {
-		            $( this ).dialog( "close" );
-		          }
+		        }
 		      }
 		    });
 		
-		
+		 $j('#ui-id-5').html("Information");
 		console.log("click");
 	});
 	
