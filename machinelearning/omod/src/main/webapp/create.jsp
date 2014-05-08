@@ -32,7 +32,7 @@
 <a id="infowindow1" href="#"  > Click here to learn more</a>
   </div>
   <div id="tabs-2">
-    <p>Click the button below to finish Diagknowzit's . After it completes, you're good to go!</p>
+    <p>Click the button below to finish Diagknowzit's update/installation process. After it completes, you're good to go!</p>
     <form id ="runmodel" method="get" action="">
     <input type="submit" value="Start">
     </form>
