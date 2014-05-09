@@ -155,15 +155,12 @@ $j('#create').submit(function (event)
 	      height:"auto",
 	      width:"auto",
 	      buttons: {
-	        Ok: function() 
+	        "Close": function() 
 	        {
 	        	
 	        	console.log("ok clicked");
 	          $( this ).dialog( "close" );
-	        },
-	        Cancel: function() {
-	            $( this ).dialog( "close" );
-	          }
+	        }
 	      }
 	    });
 	
